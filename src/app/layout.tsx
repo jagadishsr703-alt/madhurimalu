@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { getBaseUrl } from "@/lib/siteUrl";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'https://madhurimalu.com'),
+  metadataBase: new URL(getBaseUrl()),
   title: {
     default: "Madhurimalu - Sweet Telugu & Indian Song Lyrics with Meaning",
     template: "%s | Madhurimalu",
