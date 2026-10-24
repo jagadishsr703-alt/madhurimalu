@@ -5,3 +5,4 @@ export async function GET(req: NextRequest) {
   const isAuth = await isAdminAuthenticated();
   return Response.json({ authenticated: isAuth });
 }
+

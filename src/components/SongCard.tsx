@@ -60,3 +60,4 @@ export default function SongCard({ song }: { song: Song }) {
     </Link>
   );
 }
+

@@ -28,3 +28,4 @@ export async function isAdminAuthenticated(): Promise<boolean> {
   const session = cookieStore.get(COOKIE_NAME);
   return session?.value === 'authenticated_owner';
 }
+

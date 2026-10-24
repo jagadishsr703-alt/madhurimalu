@@ -127,3 +127,4 @@ export default function SearchBar({ songs = [] }: { songs?: Song[] }) {
     </div>
   );
 }
+

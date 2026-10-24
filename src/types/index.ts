@@ -22,3 +22,4 @@ export interface Song {
 }
 
 export type SongInput = Omit<Song, 'id' | 'slug' | 'views' | 'createdAt' | 'updatedAt'>;
+

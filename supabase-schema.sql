@@ -68,3 +68,4 @@ CREATE POLICY "Owner Upload Posters"
   FOR INSERT 
   TO authenticated 
   WITH CHECK (bucket_id = 'posters');
+

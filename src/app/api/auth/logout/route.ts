@@ -5,3 +5,4 @@ export async function POST(req: NextRequest) {
   await removeAdminSession();
   return Response.json({ success: true, message: 'Logged out successfully' });
 }
+
