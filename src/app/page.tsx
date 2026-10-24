@@ -4,6 +4,8 @@ import SongCard from '@/components/SongCard';
 import AdSenseBanner from '@/components/AdSenseBanner';
 import { Sparkles, TrendingUp, Music, Flame, Disc, ShieldCheck } from 'lucide-react';
 
+export const dynamic = 'force-dynamic';
+
 export default async function HomePage() {
   const songs = await getPublishedSongs();
 

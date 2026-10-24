@@ -65,7 +65,7 @@ export default function AdminDashboard() {
 
   const loadSongs = async () => {
     try {
-      const res = await fetch('/api/songs?all=true');
+      const res = await fetch(`/api/songs?all=true&t=${Date.now()}`, { cache: 'no-store' });
       const data = await res.json();
       if (data.songs) {
         setSongs(data.songs);

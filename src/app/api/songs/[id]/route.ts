@@ -1,6 +1,9 @@
 import { NextRequest } from 'next/server';
+import { revalidatePath } from 'next/cache';
 import { updateSong, deleteSong, getAllSongs } from '@/lib/storage';
 import { isAdminAuthenticated } from '@/lib/auth';
+
+export const dynamic = 'force-dynamic';
 
 export async function GET(
   req: NextRequest,
@@ -33,6 +36,17 @@ export async function PUT(
     if (!updated) {
       return Response.json({ error: 'Song not found' }, { status: 404 });
     }
+
+    // Invalidate caches so the updated song reflects instantly
+    try {
+      revalidatePath('/');
+      revalidatePath(`/lyrics/${updated.slug}`);
+      revalidatePath('/admin');
+      revalidatePath('/sitemap.xml');
+    } catch (e) {
+      // Ignore in dev
+    }
+
     return Response.json({ success: true, song: updated });
   } catch (err: any) {
     return Response.json({ error: err.message }, { status: 500 });
@@ -54,6 +68,12 @@ export async function DELETE(
     return Response.json({ error: 'Song not found' }, { status: 404 });
   }
 
+  try {
+    revalidatePath('/');
+    revalidatePath('/admin');
+  } catch (e) {
+    // Ignore in dev
+  }
+
   return Response.json({ success: true });
 }
-

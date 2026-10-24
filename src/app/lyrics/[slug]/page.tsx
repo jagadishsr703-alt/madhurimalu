@@ -6,6 +6,8 @@ import LyricsViewer from '@/components/LyricsViewer';
 import SongCard from '@/components/SongCard';
 import { Music, Sparkles, HelpCircle } from 'lucide-react';
 
+export const dynamic = 'force-dynamic';
+
 interface Props {
   params: Promise<{ slug: string }>;
 }

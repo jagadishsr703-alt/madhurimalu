@@ -5,6 +5,10 @@ import { INITIAL_SONGS } from '@/data/initialSongs';
 import { supabase, isSupabaseConfigured } from './supabase';
 
 const DATA_FILE = path.join(process.cwd(), 'src', 'data', 'songs_db.json');
+const TMP_DATA_FILE = path.join('/tmp', 'madhurimalu_songs_db.json');
+
+// In-memory cache across serverless warm invocations
+let memoryCache: Song[] | null = null;
 
 // Helper to slugify
 export function generateSlug(title: string, movie: string): string {
@@ -18,31 +22,61 @@ export function generateSlug(title: string, movie: string): string {
   return `${clean(title)}-${clean(movie)}`;
 }
 
-// Read local file storage
+// Read songs
 function getLocalSongs(): Song[] {
+  if (memoryCache && memoryCache.length > 0) {
+    return memoryCache;
+  }
+
+  // 1. Try reading from /tmp (modified copy in serverless)
+  try {
+    if (fs.existsSync(TMP_DATA_FILE)) {
+      const data = fs.readFileSync(TMP_DATA_FILE, 'utf8');
+      memoryCache = JSON.parse(data);
+      return memoryCache!;
+    }
+  } catch (err) {
+    // Continue
+  }
+
+  // 2. Try reading from bundled project file
   try {
     if (fs.existsSync(DATA_FILE)) {
       const data = fs.readFileSync(DATA_FILE, 'utf8');
-      return JSON.parse(data);
+      memoryCache = JSON.parse(data);
+      return memoryCache!;
     }
   } catch (err) {
-    console.error('Error reading local songs file:', err);
+    console.error('Error reading bundled songs file:', err);
   }
-  // Initialize with seed data if file doesn't exist
-  saveLocalSongs(INITIAL_SONGS);
-  return INITIAL_SONGS;
+
+  // 3. Fallback to initial seed songs
+  memoryCache = [...INITIAL_SONGS];
+  saveLocalSongs(memoryCache);
+  return memoryCache;
 }
 
-// Write local file storage
+// Save songs (handles read-only filesystem gracefully)
 function saveLocalSongs(songs: Song[]): void {
+  memoryCache = [...songs];
+
+  // Try writing to project folder (works in local development)
   try {
     const dir = path.dirname(DATA_FILE);
     if (!fs.existsSync(dir)) {
       fs.mkdirSync(dir, { recursive: true });
     }
     fs.writeFileSync(DATA_FILE, JSON.stringify(songs, null, 2), 'utf8');
+    return;
   } catch (err) {
-    console.error('Error saving local songs file:', err);
+    // Expected on Vercel read-only filesystem, fallback to /tmp
+  }
+
+  // Fallback: write to /tmp on Vercel
+  try {
+    fs.writeFileSync(TMP_DATA_FILE, JSON.stringify(songs, null, 2), 'utf8');
+  } catch (err) {
+    console.error('Error writing to /tmp:', err);
   }
 }
 
@@ -94,7 +128,6 @@ export async function createSong(input: SongInput): Promise<Song> {
   }
 
   const songs = getLocalSongs();
-  // Ensure unique slug
   if (songs.some(s => s.slug === newSong.slug)) {
     newSong.slug = `${newSong.slug}-${Date.now().toString().slice(-4)}`;
   }
@@ -157,4 +190,3 @@ export async function incrementSongViews(slug: string): Promise<void> {
     saveLocalSongs(songs);
   }
 }
-
