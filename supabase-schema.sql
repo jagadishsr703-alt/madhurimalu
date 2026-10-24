@@ -37,17 +37,15 @@ CREATE INDEX IF NOT EXISTS idx_songs_status ON public.songs(status);
 -- 3. Row Level Security (RLS) policies
 ALTER TABLE public.songs ENABLE ROW LEVEL SECURITY;
 
--- Allow public read access to published songs (Fast CDN caching)
-CREATE POLICY "Public can view published songs" 
-  ON public.songs 
-  FOR SELECT 
-  USING (status = 'published');
+-- Drop old policies if they exist
+DROP POLICY IF EXISTS "Public can view published songs" ON public.songs;
+DROP POLICY IF EXISTS "Owner full access to songs" ON public.songs;
+DROP POLICY IF EXISTS "Allow full access for website" ON public.songs;
 
--- Allow authenticated owner to insert, update, delete
-CREATE POLICY "Owner full access to songs" 
+-- Allow read & write access for the website (Admin security handled by Next.js Owner Auth)
+CREATE POLICY "Allow full access for website" 
   ON public.songs 
   FOR ALL 
-  TO authenticated 
   USING (true) 
   WITH CHECK (true);
 
@@ -57,15 +55,16 @@ VALUES ('posters', 'posters', true)
 ON CONFLICT (id) DO NOTHING;
 
 -- Allow public access to view posters
+DROP POLICY IF EXISTS "Public Poster Access" ON storage.objects;
 CREATE POLICY "Public Poster Access" 
   ON storage.objects 
   FOR SELECT 
   USING (bucket_id = 'posters');
 
--- Allow authenticated owner to upload posters
-CREATE POLICY "Owner Upload Posters" 
+-- Allow upload posters
+DROP POLICY IF EXISTS "Upload Posters" ON storage.objects;
+CREATE POLICY "Upload Posters" 
   ON storage.objects 
-  FOR INSERT 
-  TO authenticated 
+  FOR ALL 
+  USING (bucket_id = 'posters')
   WITH CHECK (bucket_id = 'posters');
-

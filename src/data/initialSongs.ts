@@ -211,7 +211,7 @@ Pachi mirapa naatu!`
     cast: "NTR Jr, Janhvi Kapoor",
     year: 2024,
     language: "Telugu",
-    posterUrl: "https://images.unsplash.com/photo-1518609878373-06d740f60d8b?w=800&auto=format&fit=crop&q=80",
+    posterUrl: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&auto=format&fit=crop&q=80",
     youtubeUrl: "https://www.youtube.com/watch?v=4y-57Zg3foc",
     meaning: "A sultry coastal melody celebrating intimate romance along the sea shores with hypnotic vocals by Shilpa Rao.",
     featured: true,

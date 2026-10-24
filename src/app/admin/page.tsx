@@ -26,6 +26,31 @@ export default function AdminDashboard() {
   const [editingSongId, setEditingSongId] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState<{ type: 'success' | 'error'; text: string } | null>(null);
+  const [syncing, setSyncing] = useState(false);
+
+  const handleSyncToCloud = async () => {
+    setSyncing(true);
+    setMessage(null);
+    try {
+      const res = await fetch('/api/sync', { method: 'POST' });
+      const data = await res.json();
+      if (!res.ok || !data.success) {
+        throw new Error(data.error || 'Sync failed');
+      }
+      setMessage({
+        type: 'success',
+        text: `Successfully synced ${data.count} songs to Supabase Cloud Database!`,
+      });
+      await loadSongs();
+    } catch (err: any) {
+      setMessage({
+        type: 'error',
+        text: `Supabase Sync Error: ${err.message}. Please verify your SQL schema and RLS policy in Supabase.`,
+      });
+    } finally {
+      setSyncing(false);
+    }
+  };
 
   // Form state
   const [formData, setFormData] = useState<SongInput>({
@@ -216,6 +241,16 @@ export default function AdminDashboard() {
         </div>
 
         <div className="flex items-center gap-3">
+          <button
+            onClick={handleSyncToCloud}
+            disabled={syncing}
+            className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-semibold bg-blue-500/10 text-blue-600 dark:text-blue-400 border border-blue-500/20 hover:bg-blue-500/20 transition disabled:opacity-50"
+            title="Sync all songs to Supabase cloud database"
+          >
+            <Database className="w-4 h-4" />
+            <span>{syncing ? 'Syncing...' : 'Sync to Cloud'}</span>
+          </button>
+
           <button
             onClick={() => {
               resetForm();
