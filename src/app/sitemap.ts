@@ -1,8 +1,9 @@
 import { MetadataRoute } from 'next';
 import { getPublishedSongs } from '@/lib/storage';
+import { getBaseUrl } from '@/lib/siteUrl';
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://madhurimalu.com';
+  const baseUrl = getBaseUrl();
   const songs = await getPublishedSongs();
 
   // Dynamic song pages
@@ -55,4 +56,3 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   return [...staticUrls, ...songUrls];
 }
-
