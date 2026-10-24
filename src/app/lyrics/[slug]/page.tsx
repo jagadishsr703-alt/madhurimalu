@@ -1,9 +1,10 @@
 import { notFound } from 'next/navigation';
 import type { Metadata } from 'next';
 import { getSongBySlug, getPublishedSongs, incrementSongViews } from '@/lib/storage';
+import { getBaseUrl } from '@/lib/siteUrl';
 import LyricsViewer from '@/components/LyricsViewer';
 import SongCard from '@/components/SongCard';
-import { Music, Sparkles } from 'lucide-react';
+import { Music, Sparkles, HelpCircle } from 'lucide-react';
 
 interface Props {
   params: Promise<{ slug: string }>;
@@ -19,30 +20,42 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     };
   }
 
-  const title = `${song.title} Lyrics in Telugu - ${song.movie} | Madhurimalu`;
-  const description = `Read full lyrics of ${song.title} from ${song.movie} (${song.year}). Sung by ${song.singers}, lyrics written by ${song.lyricist}, music composed by ${song.musicDirector}. English meaning included.`;
+  const baseUrl = getBaseUrl();
+  const canonicalUrl = `${baseUrl}/lyrics/${song.slug}`;
+  const noSpaceTitle = song.title.replace(/\s+/g, '').toLowerCase();
+
+  const title = `${song.title} Lyrics in Telugu & English, Meaning - ${song.movie} | Madhurimalu`;
+  const description = `Read complete ${song.title} lyrics in Telugu script and English transliteration from ${song.movie} (${song.year}). Sung by ${song.singers}, lyrics by ${song.lyricist}, music by ${song.musicDirector}. English meaning and audio player included.`;
 
   return {
     title,
     description,
+    alternates: {
+      canonical: canonicalUrl,
+    },
     keywords: [
       `${song.title} lyrics`,
+      `${noSpaceTitle} lyrics`,
+      `${song.title} song lyrics`,
       `${song.title} lyrics in telugu`,
-      `${song.title} song ${song.movie}`,
-      `${song.singers} songs`,
+      `${song.title} lyrics in english`,
+      `${song.title} song meaning`,
+      `${song.movie} lyrics`,
+      `${song.singers} songs lyrics`,
       `${song.lyricist} lyrics`,
-      `${song.movie} songs lyrics`,
-      'madhurimalu lyrics',
+      'madhurimalu',
+      'telugu song lyrics',
     ],
     openGraph: {
       title,
       description,
+      url: canonicalUrl,
       images: [
         {
           url: song.posterUrl,
           width: 800,
           height: 600,
-          alt: `${song.title} - ${song.movie}`,
+          alt: `${song.title} - ${song.movie} Lyrics`,
         },
       ],
       type: 'article',
@@ -64,20 +77,19 @@ export default async function LyricsPage({ params }: Props) {
     notFound();
   }
 
-  // Increment view counter
+  // Increment real view counter
   await incrementSongViews(slug);
 
-  // Fetch related songs (same movie or same singers)
+  // Fetch related songs
   const allSongs = await getPublishedSongs();
   const relatedSongs = allSongs
     .filter((s) => s.id !== song.id && (s.movie === song.movie || s.singers.includes(song.singers.split(',')[0])))
     .slice(0, 4);
 
-  // Fallback to latest if no direct relation
   const displayRelated = relatedSongs.length > 0 ? relatedSongs : allSongs.filter(s => s.id !== song.id).slice(0, 4);
 
-  // Schema.org MusicComposition / Lyrics structured data
-  const jsonLd = {
+  // 1. Schema.org MusicComposition structured data
+  const musicJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'MusicComposition',
     name: song.title,
@@ -89,7 +101,7 @@ export default async function LyricsPage({ params }: Props) {
       '@type': 'Person',
       name: song.lyricist,
     },
-    inLanguage: song.language,
+    inLanguage: [song.language, 'English'],
     text: song.lyrics.slice(0, 300) + '...',
     recordedAs: {
       '@type': 'MusicRecording',
@@ -105,12 +117,60 @@ export default async function LyricsPage({ params }: Props) {
     },
   };
 
+  // 2. Schema.org FAQPage structured data (Boosts Google SERP Rich Snippets!)
+  const faqJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: [
+      {
+        '@type': 'Question',
+        name: `Who wrote the lyrics for ${song.title}?`,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: `The lyrics for ${song.title} are written by ${song.lyricist}.`,
+        },
+      },
+      {
+        '@type': 'Question',
+        name: `Who is the singer of ${song.title}?`,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: `${song.title} is sung by ${song.singers}.`,
+        },
+      },
+      {
+        '@type': 'Question',
+        name: `Who composed the music for ${song.title}?`,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: `The music for ${song.title} from ${song.movie} is composed by ${song.musicDirector}.`,
+        },
+      },
+      ...(song.meaning
+        ? [
+            {
+              '@type': 'Question',
+              name: `What is the meaning of ${song.title} song?`,
+              acceptedAnswer: {
+                '@type': 'Answer',
+                text: song.meaning,
+              },
+            },
+          ]
+        : []),
+    ],
+  };
+
   return (
     <>
-      {/* Inject Google Structured Data for SEO Rich Cards */}
+      {/* Inject Google Rich Data for Search Results */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(musicJsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
 
       <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
@@ -125,6 +185,43 @@ export default async function LyricsPage({ params }: Props) {
 
         {/* Main Lyrics Reader & Metadata */}
         <LyricsViewer song={song} />
+
+        {/* Google FAQ Section - Directly targets search questions */}
+        <section className="mt-12 bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm">
+          <div className="flex items-center gap-2 text-amber-600 dark:text-amber-400 font-bold text-xs uppercase tracking-wider mb-4">
+            <HelpCircle className="w-4 h-4" />
+            <span>Frequently Asked Questions (FAQ)</span>
+          </div>
+
+          <div className="divide-y divide-slate-100 dark:divide-slate-800 space-y-4 text-sm">
+            <div className="pt-3">
+              <h3 className="font-bold text-slate-900 dark:text-white mb-1">
+                Who wrote the lyrics for {song.title}?
+              </h3>
+              <p className="text-slate-600 dark:text-slate-300 text-xs sm:text-sm">
+                The lyrics for {song.title} from the movie <strong>{song.movie}</strong> were written by <strong>{song.lyricist}</strong>.
+              </p>
+            </div>
+
+            <div className="pt-3">
+              <h3 className="font-bold text-slate-900 dark:text-white mb-1">
+                Who sang the song {song.title}?
+              </h3>
+              <p className="text-slate-600 dark:text-slate-300 text-xs sm:text-sm">
+                {song.title} is sung by <strong>{song.singers}</strong>.
+              </p>
+            </div>
+
+            <div className="pt-3">
+              <h3 className="font-bold text-slate-900 dark:text-white mb-1">
+                Who is the music composer for {song.movie}?
+              </h3>
+              <p className="text-slate-600 dark:text-slate-300 text-xs sm:text-sm">
+                The soundtrack and background score were composed by <strong>{song.musicDirector}</strong>.
+              </p>
+            </div>
+          </div>
+        </section>
 
         {/* Related / More Recommended Melodies */}
         {displayRelated.length > 0 && (
@@ -146,4 +243,3 @@ export default async function LyricsPage({ params }: Props) {
     </>
   );
 }
-

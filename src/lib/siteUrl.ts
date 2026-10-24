@@ -10,3 +10,4 @@ export function getBaseUrl(): string {
   }
   return 'https://madhurimalu.vercel.app';
 }
+

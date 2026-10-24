@@ -16,10 +16,10 @@ export const INITIAL_SONGS: Song[] = [
     youtubeUrl: "https://www.youtube.com/watch?v=ocpe1c1Xfpo",
     meaning: "Samajavaragamana is a romantic tribute expressing awe and adoration for a woman's grace, walking style, and ethereal elegance. Sirivennela's poetic mastery compares her beauty to divine classical grace.",
     featured: true,
-    views: 124500,
+    views: 0,
     status: "published",
     createdAt: "2024-01-15T10:00:00Z",
-    tags: ["Sid Sriram", "Thaman S", "Allu Arjun", "Romantic", "Melody"],
+    tags: ["Sid Sriram", "Thaman S", "Allu Arjun", "Romantic", "Melody", "Samajavaragamana Lyrics"],
     lyrics: `కళ్ళతో మాట్లాడే కమ్మని చిన్నదానా
 మనసునే దోచావే మాయల మారెమ్మ
 వయ్యారి నడకలతో హృదయం మీటినావే
@@ -38,7 +38,18 @@ export const INITIAL_SONGS: Song[] = [
 సామజవరగమనా నిను చూసి ఆగలేనా
 నీ అందం వర్ణించ పదాలు చాలకున్నా
 సామజవరగమనా మదిలోన నిండిపోవా
-నీ జ్ఞాపకం తోడై నన్నే నడిపించగా`
+నీ జ్ఞాపకం తోడై నన్నే నడిపించగా
+
+--- English Script (Transliteration) ---
+Kallatho maatlaade kammani chinnadaanaa
+Manasune dochaave maayala maaremma
+Vayyaari nadakalatho hrudayam meetinaave
+Nee choope naa praanam nilipe amruthamaye
+
+Samajavaragamana ninu choosi aagalena
+Nee andam varnincha padaalu chaalakunna
+Samajavaragamana madilona nindipova
+Nee gnaapakam thodai nanne nadipinchaga`
   },
   {
     id: "2",
@@ -55,10 +66,10 @@ export const INITIAL_SONGS: Song[] = [
     youtubeUrl: "https://www.youtube.com/watch?v=k5q4g46gPso",
     meaning: "A joyous celebration of love where the protagonist wonders what else in the world one could possibly need when their beloved is beside them.",
     featured: true,
-    views: 98000,
+    views: 0,
     status: "published",
     createdAt: "2024-01-20T12:00:00Z",
-    tags: ["Sid Sriram", "Vijay Deverakonda", "Rashmika", "Love", "Superhit"],
+    tags: ["Sid Sriram", "Vijay Deverakonda", "Rashmika", "Love", "Inkem Inkem Lyrics"],
     lyrics: `ఇంకేం ఇంకేం ఇంకేం కావాలే
 చాలే ఇది చాలే
 నీకై నువ్వే వచ్చి వాలావే
@@ -77,7 +88,18 @@ export const INITIAL_SONGS: Song[] = [
 కంటిపాపలా నిను కాచుకుంటా
 కాలు కింద పెట్టనీయకుండా చూసుకుంటా
 నీ చిరునవ్వే నాకు శ్రీరామరక్ష
-నీ తోడై ఉంటే చాలు ఏనాటికైనా!`
+నీ తోడై ఉంటే చాలు ఏనాటికైనా!
+
+--- English Script (Transliteration) ---
+Inkem inkem inkem kaavaale
+Chaale idi chaale
+Neekai nuvve vachi vaalaave
+Ikapai thiranaalle
+
+Gundellona goodu katti
+Guvvalle cherina pitta
+Neetho unte kaalam gente
+Aanandaala chiru jalle`
   },
   {
     id: "3",
@@ -92,12 +114,12 @@ export const INITIAL_SONGS: Song[] = [
     language: "Telugu",
     posterUrl: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=800&auto=format&fit=crop&q=80",
     youtubeUrl: "https://www.youtube.com/watch?v=2mDCVzruYzQ",
-    meaning: "An infectious, vibrant, foot-tapping love track comparing the beloved lady to a delicate, beautiful traditional doll (Butta Bomma).",
+    meaning: "An infectious, vibrant love track comparing the beloved lady to a delicate, beautiful traditional doll (Butta Bomma).",
     featured: true,
-    views: 145000,
+    views: 0,
     status: "published",
     createdAt: "2024-02-01T08:00:00Z",
-    tags: ["Armaan Malik", "Thaman S", "Dance", "Pooja Hegde"],
+    tags: ["Armaan Malik", "Thaman S", "Dance", "Pooja Hegde", "Buttabomma Lyrics", "Butta Bomma Song Lyrics"],
     lyrics: `ఇంతకన్న మంచి పోలికేది
 నాకు తట్టలేదు కానీ అమ్ముడు
 బుట్టబొమ్మ బుట్టబొమ్మ
@@ -113,7 +135,25 @@ export const INITIAL_SONGS: Song[] = [
 బుట్టబొమ్మ బుట్టబొమ్మ
 నన్ను సుట్టుకుంటివే
 జిందగీకే అట్టబొమ్మై
-వట్టుకుంటివే!`
+వట్టుకుంటివే!
+
+--- English Script (Transliteration) ---
+Inthakanna manchi polikedi
+Naaku thattaledu kaani ammudoo
+Butta bomma butta bomma
+Nannu suttukuntive
+Zindagike attabommai
+Vattukuntive
+
+Multicolor poola chokka vesi
+Mathi pogotte nadakalesi
+Chitikelesi saigajesi
+Gundekemo gaalamesi
+
+Buttabomma buttabomma
+Nannu suttukuntive
+Zindagike attabommai
+Vattukuntive!`
   },
   {
     id: "4",
@@ -130,10 +170,10 @@ export const INITIAL_SONGS: Song[] = [
     youtubeUrl: "https://www.youtube.com/watch?v=OsU0CGZoV8E",
     meaning: "Academy Award-winning high-energy folk anthem celebrating raw earthy desi dancing spirit, defying colonial oppression with unstoppable rhythm.",
     featured: true,
-    views: 320000,
+    views: 0,
     status: "published",
     createdAt: "2024-02-10T14:00:00Z",
-    tags: ["Oscar Winner", "MM Keeravani", "RRR", "NTR", "Ram Charan", "Energy"],
+    tags: ["Oscar Winner", "MM Keeravani", "RRR", "NTR", "Ram Charan", "Energy", "Naatu Naatu Lyrics"],
     lyrics: `పొలంగట్టు దుమ్ములాన
 పోతరాజు దుమ్ములాన
 కాళ్ళజొల్లు తన్నినట్టు
@@ -147,7 +187,18 @@ export const INITIAL_SONGS: Song[] = [
 గుండెలదిరిపోయేలా
 తాళం తూలిపోయేలా
 కాలు దువ్వి కుమ్మేసేలా
-నాటు పాట పాడరో!`
+నాటు పాట పాడరో!
+
+--- English Script (Transliteration) ---
+Polangattu dummulaana
+Potharaaju dummulaana
+Kaallajollu thanninattu
+Naram naram reginattu
+
+Naatu naatu naatu naatu
+Naatu naatu veera naatu
+Naatu naatu naatu naatu
+Pachi mirapa naatu!`
   },
   {
     id: "5",
@@ -164,10 +215,10 @@ export const INITIAL_SONGS: Song[] = [
     youtubeUrl: "https://www.youtube.com/watch?v=4y-57Zg3foc",
     meaning: "A sultry coastal melody celebrating intimate romance along the sea shores with hypnotic vocals by Shilpa Rao.",
     featured: true,
-    views: 210000,
+    views: 0,
     status: "published",
     createdAt: "2024-08-15T10:00:00Z",
-    tags: ["Anirudh", "Shilpa Rao", "Janhvi Kapoor", "NTR", "Latest", "Romantic"],
+    tags: ["Anirudh", "Shilpa Rao", "Janhvi Kapoor", "NTR", "Latest", "Romantic", "Chuttamalle Lyrics"],
     lyrics: `చుట్టమల్లే చూసిపోకే
 గుండెల్లోనే దాచుకోవే
 అలలాగ వచ్చి నువ్వు
@@ -181,7 +232,17 @@ export const INITIAL_SONGS: Song[] = [
 చుట్టమల్లే చూసిపోకే
 గుండెల్లోనే దాచుకోవే
 కలలలోన నీ రూపమే
-కనుల ఎదుట నిలిచిపోవే!`
+కనుల ఎదుట నిలిచిపోవే!
+
+--- English Script (Transliteration) ---
+Chuttamalle choosipoke
+Gundellone daachukove
+Alalaaga vachi nuvvu
+Nanne thaaki poke
+
+Gaalilone nee parimalam
+Cheradeese nee pranayam
+Maayajesi vellipoke
+Thodai naatho undipove!`
   }
 ];
-
