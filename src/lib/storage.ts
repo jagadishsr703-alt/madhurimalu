@@ -88,6 +88,8 @@ function saveLocalSongs(songs: Song[]): void {
 }
 
 export async function getAllSongs(): Promise<Song[]> {
+  const localSongs = getLocalSongs();
+
   if (isSupabaseConfigured && supabase) {
     try {
       const res = await withTimeout(
@@ -99,23 +101,41 @@ export async function getAllSongs(): Promise<Song[]> {
 
       const { data, error } = res as any;
 
-      if (!error && Array.isArray(data) && data.length > 0) {
-        // Cache to memory and /tmp so cold starts never lose updates
-        saveLocalSongs(data as Song[]);
-        return data as Song[];
-      }
+      if (!error && Array.isArray(data)) {
+        // Auto-purge any stale non-Temper songs from Supabase so only Temper remains
+        const nonTemperSongs = data.filter((s: Song) => s.movie?.trim().toLowerCase() !== 'temper');
+        if (nonTemperSongs.length > 0) {
+          try {
+            await Promise.all(
+              nonTemperSongs.map((s: Song) => supabase!.from('songs').delete().eq('id', s.id))
+            );
+          } catch (e) {
+            console.warn('Auto-purge stale songs warning:', e);
+          }
+        }
 
-      // If Supabase table is empty, auto-seed with local songs!
-      if (!error && Array.isArray(data) && data.length === 0) {
-        const local = getLocalSongs();
-        await withTimeout(supabase.from('songs').upsert(local));
-        return local;
+        const temperSongs = data.filter((s: Song) => s.movie?.trim().toLowerCase() === 'temper');
+
+        // If Supabase is missing any of the 5 Temper songs, upsert them
+        if (temperSongs.length < localSongs.length) {
+          try {
+            const sanitized = localSongs.map(({ englishLyrics, ...rest }) => rest);
+            await supabase.from('songs').upsert(sanitized);
+          } catch (e) {
+            console.warn('Auto-seed missing Temper songs warning:', e);
+          }
+          saveLocalSongs(localSongs);
+          return localSongs;
+        }
+
+        saveLocalSongs(temperSongs as Song[]);
+        return temperSongs as Song[];
       }
     } catch (err) {
       console.warn('Supabase fetch failed or timed out, using fallback cache:', err);
     }
   }
-  return getLocalSongs();
+  return localSongs;
 }
 
 export async function getPublishedSongs(): Promise<Song[]> {
@@ -265,13 +285,10 @@ export async function syncLocalSongsToSupabase(): Promise<{ count: number; error
 
   try {
     const songs = getLocalSongs();
-    const validIds = songs.map((s) => s.id);
-    if (validIds.length > 0) {
-      try {
-        await withTimeout(supabase.from('songs').delete().not('id', 'in', `(${validIds.join(',')})`), 6000);
-      } catch (cleanErr) {
-        console.warn('Purge old songs notice:', cleanErr);
-      }
+    try {
+      await withTimeout(supabase.from('songs').delete().neq('movie', 'Temper'), 6000);
+    } catch (cleanErr) {
+      console.warn('Purge non-Temper songs notice:', cleanErr);
     }
 
     let res = await withTimeout(supabase.from('songs').upsert(songs), 10000);
