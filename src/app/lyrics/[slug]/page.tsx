@@ -4,7 +4,7 @@ import { getSongBySlug, getPublishedSongs, incrementSongViews } from '@/lib/stor
 import { getBaseUrl } from '@/lib/siteUrl';
 import LyricsViewer from '@/components/LyricsViewer';
 import SongCard from '@/components/SongCard';
-import { Music, Sparkles, HelpCircle } from 'lucide-react';
+import { Music, Sparkles, HelpCircle, Disc } from 'lucide-react';
 
 export const dynamic = 'force-dynamic';
 
@@ -82,8 +82,12 @@ export default async function LyricsPage({ params }: Props) {
   // Increment real view counter
   await incrementSongViews(slug);
 
-  // Fetch related songs
+  // Fetch related songs and full movie album
   const allSongs = await getPublishedSongs();
+  const movieSongs = allSongs.filter(
+    (s) => s.movie.trim().toLowerCase() === song.movie.trim().toLowerCase()
+  );
+
   const relatedSongs = allSongs
     .filter((s) => s.id !== song.id && (s.movie === song.movie || s.singers.includes(song.singers.split(',')[0])))
     .slice(0, 4);
@@ -187,6 +191,81 @@ export default async function LyricsPage({ params }: Props) {
 
         {/* Main Lyrics Reader & Metadata */}
         <LyricsViewer song={song} />
+
+        {/* Movie Album Soundtrack Discography */}
+        <section className="mt-12 bg-gradient-to-br from-amber-500/5 via-slate-50 to-slate-100 dark:from-slate-900 dark:via-slate-900/90 dark:to-slate-900/70 border border-amber-500/20 dark:border-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 mb-6">
+            <div className="flex items-center gap-3">
+              <div className="p-2.5 rounded-2xl bg-amber-500/10 text-amber-600 dark:text-amber-400">
+                <Disc className="w-5 h-5" />
+              </div>
+              <div>
+                <h3 className="text-lg font-bold text-slate-900 dark:text-white">
+                  {song.movie} ({song.year}) Soundtrack
+                </h3>
+                <p className="text-xs text-slate-500 dark:text-slate-400">
+                  Music Director: <strong>{song.musicDirector}</strong> • {movieSongs.length} {movieSongs.length === 1 ? 'Track' : 'Tracks in Soundtrack'}
+                </p>
+              </div>
+            </div>
+
+            <span className="text-[11px] font-mono px-3 py-1 rounded-full bg-amber-500/10 text-amber-600 dark:text-amber-400 font-semibold self-start sm:self-auto border border-amber-500/20">
+              Album Discography
+            </span>
+          </div>
+
+          <div className="space-y-2.5">
+            {movieSongs.map((track, idx) => {
+              const isCurrent = track.id === song.id;
+              return (
+                <div
+                  key={track.id}
+                  className={`flex items-center justify-between p-3.5 sm:p-4 rounded-2xl transition border ${
+                    isCurrent
+                      ? 'bg-amber-500/10 border-amber-500/30 text-amber-700 dark:text-amber-300 shadow-sm'
+                      : 'bg-white dark:bg-slate-800/60 border-slate-200/80 dark:border-slate-700/60 hover:border-amber-500/40 text-slate-700 dark:text-slate-300'
+                  }`}
+                >
+                  <div className="flex items-center gap-3.5 min-w-0">
+                    <span className={`w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${
+                      isCurrent ? 'bg-amber-500 text-white' : 'bg-slate-100 dark:bg-slate-700 text-slate-500 dark:text-slate-400'
+                    }`}>
+                      {idx + 1}
+                    </span>
+                    <div className="min-w-0">
+                      <p className="text-sm font-bold truncate">
+                        {track.title}
+                        {isCurrent && (
+                          <span className="ml-2 text-[10px] px-2 py-0.5 rounded-full bg-amber-500 text-white font-medium">
+                            Now Reading
+                          </span>
+                        )}
+                      </p>
+                      <p className="text-xs text-slate-500 dark:text-slate-400 truncate">
+                        Singers: {track.singers} • Lyrics: {track.lyricist}
+                      </p>
+                    </div>
+                  </div>
+
+                  <div>
+                    {isCurrent ? (
+                      <span className="text-xs font-bold text-amber-600 dark:text-amber-400 px-3 py-1.5 rounded-xl bg-amber-500/15">
+                        Active
+                      </span>
+                    ) : (
+                      <a
+                        href={`/lyrics/${track.slug}`}
+                        className="text-xs font-bold text-slate-700 dark:text-slate-200 hover:text-white hover:bg-amber-600 px-3 py-1.5 rounded-xl bg-slate-100 dark:bg-slate-700 transition"
+                      >
+                        Read Lyrics →
+                      </a>
+                    )}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </section>
 
         {/* Google FAQ Section - Directly targets search questions */}
         <section className="mt-12 bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-3xl p-6 sm:p-8 shadow-sm">
