@@ -28,6 +28,7 @@ export default function LyricsViewer({ song }: { song: Song }) {
   const [copied, setCopied] = useState<boolean>(false);
   const [showVideo, setShowVideo] = useState<boolean>(false);
   const [sharedToast, setSharedToast] = useState<string>('');
+  const [activeLang, setActiveLang] = useState<'telugu' | 'english'>('telugu');
 
   // Floating PiP Mini-Player states
   const [isFloating, setIsFloating] = useState<boolean>(false);
@@ -38,9 +39,23 @@ export default function LyricsViewer({ song }: { song: Song }) {
   const playerWrapperRef = useRef<HTMLDivElement>(null);
   const dragRef = useRef<{ startX: number; startY: number; initX: number; initY: number } | null>(null);
 
+  // Extract separate Telugu and English script (Telugu in English typing)
+  let teluguText = song.lyrics || '';
+  let englishText = song.englishLyrics || '';
+
+  if (!englishText && teluguText.includes('--- English Script')) {
+    const parts = teluguText.split(/--- English Script[^-]*---/);
+    teluguText = parts[0].trim();
+    englishText = parts[1]?.trim() || '';
+  }
+
+  const currentLyricsText = activeLang === 'english' && englishText ? englishText : teluguText;
+  const stanzas = currentLyricsText.split(/\n\s*\n/).filter(Boolean);
+
   const handleCopy = async () => {
     try {
-      const fullText = `${song.title} Lyrics - ${song.movie} (${song.year})\nSingers: ${song.singers}\nLyricist: ${song.lyricist}\nMusic: ${song.musicDirector}\n\n${song.lyrics}\n\nRead more at Madhurimalu: ${window.location.href}`;
+      const scriptLabel = activeLang === 'english' ? 'English Script (Tanglish)' : 'Telugu Script';
+      const fullText = `${song.title} Lyrics (${scriptLabel}) - ${song.movie} (${song.year})\nSingers: ${song.singers}\nLyricist: ${song.lyricist}\nMusic: ${song.musicDirector}\n\n${currentLyricsText}\n\nRead more at Madhurimalu: ${window.location.href}`;
       await navigator.clipboard.writeText(fullText);
       setCopied(true);
       setTimeout(() => setCopied(false), 2500);
@@ -185,9 +200,6 @@ export default function LyricsViewer({ song }: { song: Song }) {
     };
     setIsDragging(true);
   };
-
-  // Split lyrics by double line breaks into stanzas
-  const stanzas = song.lyrics.split(/\n\s*\n/).filter(Boolean);
 
   return (
     <div className="w-full">
@@ -461,6 +473,44 @@ export default function LyricsViewer({ song }: { song: Song }) {
         </div>
       </div>
 
+      {/* Language Switch Tabs (Telugu Script vs English Typing) */}
+      <div className="flex items-center justify-between mb-4">
+        <div className="inline-flex p-1 rounded-2xl bg-slate-100 dark:bg-slate-800/80 border border-slate-200/80 dark:border-slate-700/80 shadow-inner">
+          <button
+            onClick={() => setActiveLang('telugu')}
+            className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition flex items-center gap-2 ${
+              activeLang === 'telugu'
+                ? 'bg-amber-600 text-white shadow-md'
+                : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+            }`}
+          >
+            <span>🇮🇳 తెలుగు Lyrics</span>
+          </button>
+
+          <button
+            onClick={() => setActiveLang('english')}
+            className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-bold transition flex items-center gap-2 ${
+              activeLang === 'english'
+                ? 'bg-amber-600 text-white shadow-md'
+                : 'text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white'
+            }`}
+          >
+            <span>🔤 English Script (Tanglish)</span>
+          </button>
+        </div>
+
+        <span className="text-[11px] text-slate-400 hidden sm:inline">
+          {activeLang === 'english' ? 'Reading in English typing alphabet' : 'Reading in native Telugu script'}
+        </span>
+      </div>
+
+      {activeLang === 'english' && !englishText && (
+        <div className="mb-4 p-3 rounded-2xl bg-amber-500/10 border border-amber-500/20 text-xs text-amber-700 dark:text-amber-400 flex items-center gap-2">
+          <Info className="w-4 h-4 flex-shrink-0" />
+          <span>English script (Tanglish typing) hasn&apos;t been added for this song yet. Showing Telugu script below.</span>
+        </div>
+      )}
+
       {/* Lyrics Text Card */}
       <div className="bg-white dark:bg-slate-900 border border-slate-200/80 dark:border-slate-800 rounded-3xl p-6 sm:p-12 shadow-sm mb-8">
         <div className="max-w-2xl mx-auto">
@@ -468,7 +518,9 @@ export default function LyricsViewer({ song }: { song: Song }) {
             <div key={idx} className="mb-8">
               <p
                 style={{ fontSize: `${fontSize}px` }}
-                className="lyrics-text font-serif text-slate-800 dark:text-slate-100 whitespace-pre-line leading-relaxed"
+                className={`lyrics-text ${
+                  activeLang === 'english' && englishText ? 'font-sans' : 'font-serif'
+                } text-slate-800 dark:text-slate-100 whitespace-pre-line leading-relaxed`}
               >
                 {stanza}
               </p>

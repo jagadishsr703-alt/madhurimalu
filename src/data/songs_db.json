@@ -26,7 +26,8 @@
     "featured": false,
     "status": "published",
     "createdAt": "2026-10-26T06:16:08.703+00:00",
-    "updatedAt": "2026-10-26T06:16:40.74+00:00"
+    "updatedAt": "2026-10-26T06:16:40.74+00:00",
+    "englishLyrics": "Ninnu choosi padipoya on the spot\nNannu nenu marchipoya on the spot\nHa ninnu choosi padipoya on the spot\nNannu nenu marchipoya on the spot\nMagic edo chesinattu on the spot\nNee maatalaku padipoya on the spot\nNanu em chesaavo\nInthakee adi artham kaade inthakee\nNaa gunde patti laagi laagi champeysavu\nGilli gilli premincheselaa\n\nO one more time baby one more time\nMalli malli cheppa maata one more time\nOne more time baby one more time\nMalli malli cheppa maata one more time\nOh one more time\n\nOn the spot\nOne more time\n\nKalla thoti navvi nannu\nGaayaparichaave\nPedavi thoti saiga chesi\nNidra cheripaave\nMadi oogesi uyyaala\nNeetho aadindi jampaala\nNaaku naanaarakaala nachaave baala ra\n\nNinnu choosi padipoya on the spot\nNannu nenu marchipoya on the spot\n\nEnto emo edanu motham maayachesaave\nGundeloki gundu soodila goorchukunnaave\nNaaku isthaava andaala\nNaatho vasthaava kandaala\nNannu mithaayilaaga\nMingesi pora ra\n\nHa ninnu choosi padipoya on the spot\nNannu nenu marchipoya on the spot\nMagic edo chesinattu on the spot\nNee maatalaku padipoya on the spot\nNannu em chesaavo inthakee\nAdi artham kaade enthakee\nNaa gunde patti laagi laagi champeysavu\nGilli gilli premincheselaa\n\nOne more time baby one more time baby\nMalli malli cheppa maata one more time\nOne more time baby one more time baby\nMalli malli cheppa maata one more time"
   },
   {
     "id": "1792833823281",
@@ -48,7 +49,8 @@
     "featured": true,
     "status": "published",
     "createdAt": "2026-10-24T09:23:43.282+00:00",
-    "updatedAt": null
+    "updatedAt": null,
+    "englishLyrics": "Ammaa ammaa nee aashalanni\nNaalo daachi neeveto vellaavaa\nNee paadaala muvvala savvadi\nNaa gundello moguthoo unnadhe\n\nKanneere naa thodai migile\nKammani nee preme emaaye\nJolaali paade jaabilammaa\nNanu vidichi enduku vellaave"
   },
   {
     "id": "5",
@@ -63,7 +65,7 @@
     "language": "Telugu",
     "posterUrl": "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&auto=format&fit=crop&q=80",
     "youtubeUrl": "https://www.youtube.com/watch?v=4y-57Zg3foc",
-    "lyrics": "చుట్టమల్లే చూసిపోకే\nగుండెల్లోనే దాచుకోవే\nఅలలాగ వచ్చి నువ్వు\nనన్నే తాకి పోకే\n\nగాలిలోనే నీ పరిమళం\nచేరదీసె నీ ప్రణయం\nమాయజేసి వెళ్ళిపోకే\nతోడై నాతో ఉండిపోవే!\n\nచుట్టమల్లే చూసిపోకే\nగుండెల్లోనే దాచుకోవే\nకలలలోన నీ రూపమే\nకనుల ఎదుట నిలిచిపోవే!\n\n--- English Script (Transliteration) ---\nChuttamalle choosipoke\nGundellone daachukove\nAlalaaga vachi nuvvu\nNanne thaaki poke\n\nGaalilone nee parimalam\nCheradeese nee pranayam\nMaayajesi vellipoke\nThodai naatho undipove!",
+    "lyrics": "చుట్టమల్లే చూసిపోకే\nగుండెల్లోనే దాచుకోవే\nఅలలాగ వచ్చి నువ్వు\nనన్నే తాకి పోకే\n\nగాలిలోనే నీ పరిమళం\nచేరదీసె నీ ప్రణయం\nమాయజేసి వెళ్ళిపోకే\nతోడై నాతో ఉండిపోవే!\n\nచుట్టమల్లే చూసిపోకే\nగుండెల్లోనే దాచుకోవే\nకలలలోన నీ రూపమే\nకనుల ఎదుట నిలిచిపోవే!",
     "meaning": "A sultry coastal melody celebrating intimate romance along the sea shores with hypnotic vocals by Shilpa Rao.",
     "tags": [
       "Anirudh",
@@ -78,7 +80,8 @@
     "featured": true,
     "status": "published",
     "createdAt": "2024-08-15T10:00:00+00:00",
-    "updatedAt": null
+    "updatedAt": null,
+    "englishLyrics": "Chuttamalle choosipoke\nGundellone daachukove\nAlalaaga vachi nuvvu\nNanne thaaki poke\n\nGaalilone nee parimalam\nCheradeese nee pranayam\nMaayajesi vellipoke\nThodai naatho undipove!\n\nChuttamalle choosipoke\nGundellone daachukove\nKalalalona nee roopame\nKanula eduta nilichipove!"
   },
   {
     "id": "4",
@@ -93,7 +96,7 @@
     "language": "Telugu",
     "posterUrl": "https://images.unsplash.com/photo-1465847899084-d164df4dedc6?w=800&auto=format&fit=crop&q=80",
     "youtubeUrl": "https://www.youtube.com/watch?v=OsU0CGZoV8E",
-    "lyrics": "పొలంగట్టు దుమ్ములాన\nపోతరాజు దుమ్ములాన\nకాళ్ళజొల్లు తన్నినట్టు\nనరం నరం రేగినట్టు\n\nనాటు నాటు నాటు నాటు\nనాటు నాటు వీర నాటు\nనాటు నాటు నాటు నాటు\nపచ్చి మిరప నాటు!\n\nగుండెలదిరిపోయేలా\nతాళం తూలిపోయేలా\nకాలు దువ్వి కుమ్మేసేలా\nనాటు పాట పాడరో!\n\n--- English Script (Transliteration) ---\nPolangattu dummulaana\nPotharaaju dummulaana\nKaallajollu thanninattu\nNaram naram reginattu\n\nNaatu naatu naatu naatu\nNaatu naatu veera naatu\nNaatu naatu naatu naatu\nPachi mirapa naatu!",
+    "lyrics": "పొలంగట్టు దుమ్ములాన\nపోతరాజు దుమ్ములాన\nకాళ్ళజొల్లు తన్నినట్టు\nనరం నరం రేగినట్టు\n\nనాటు నాటు నాటు నాటు\nనాటు నాటు వీర నాటు\nనాటు నాటు నాటు నాటు\nపచ్చి మిరప నాటు!\n\nగుండెలదిరిపోయేలా\nతాళం తూలిపోయేలా\nకాలు దువ్వి కుమ్మేసేలా\nనాటు పాట పాడరో!",
     "meaning": "Academy Award-winning high-energy folk anthem celebrating raw earthy desi dancing spirit, defying colonial oppression with unstoppable rhythm.",
     "tags": [
       "Oscar Winner",
@@ -108,7 +111,8 @@
     "featured": true,
     "status": "published",
     "createdAt": "2024-02-10T14:00:00+00:00",
-    "updatedAt": null
+    "updatedAt": null,
+    "englishLyrics": "Polangattu dummulaana\nPotharaaju dummulaana\nKaallajollu thanninattu\nNaram naram reginattu\n\nNaatu naatu naatu naatu\nNaatu naatu veera naatu\nNaatu naatu naatu naatu\nPachi mirapa naatu!\n\nGundeladiripoyelaa\nThaalam thoolipoyelaa\nKaalu duvvi kummeselaa\nNaatu paata paadaro!"
   },
   {
     "id": "3",
@@ -123,7 +127,7 @@
     "language": "Telugu",
     "posterUrl": "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=800&auto=format&fit=crop&q=80",
     "youtubeUrl": "https://www.youtube.com/watch?v=2mDCVzruYzQ",
-    "lyrics": "ఇంతకన్న మంచి పోలికేది...\n(Verified & Updated Lyrics)",
+    "lyrics": "ఇంతకన్నా మంచి పోలికేది\nనాకు తట్టలేదు గాని అమ్ము\nఈ లంగా వోణీల్లోన\nలచ్చిందేవల్లే ఉన్నావే పోరి\n\nబుట్టబొమ్మ బుట్టబొమ్మ\nనన్ను సుట్టుకుంటివే\nజిందగీకే అట్టబొమ్మ\nనన్ను సెసికుంటివే\n\nముల్టీ కలరు పూల చొక్కా\nఎగరేసుకున్న బాకులాగ\nమళ్ళీ మళ్ళీ గుచ్చుతావే\nగుండెల్లోన బాకులాగ\n\nచిన్నగా చిన్నగా నవ్వుతూనే\nమాయజేసి చంపినావే\nబుట్టబొమ్మ బుట్టబొమ్మ\nనన్ను సుట్టుకుంటివే!",
     "meaning": "An infectious, vibrant love track comparing the beloved lady to a delicate, beautiful traditional doll.",
     "tags": [
       "Armaan Malik",
@@ -137,7 +141,8 @@
     "featured": true,
     "status": "published",
     "createdAt": "2024-02-01T08:00:00+00:00",
-    "updatedAt": "2026-10-24T16:20:27.265+00:00"
+    "updatedAt": "2026-10-24T16:20:27.265+00:00",
+    "englishLyrics": "Inthakanna manchi polikedi\nNaaku thattaleedu gaani Ammu\nEe langa vonillona\nLacchindevallae unnaave pori\n\nButta bomma butta bomma\nNannu suttukuntive\nZindagi ke atta bomma\nNannu sesikuntive\n\nMulti color-u poola chokka\nEgaresukunna baakulaaga\nMalli malli gucchutaave\nGundellona baakulaaga\n\nChinnagaa chinnagaa navvuthoone\nMaayajesi champinaave\nButta bomma butta bomma\nNannu suttukuntive!"
   },
   {
     "id": "2",
@@ -152,7 +157,7 @@
     "language": "Telugu",
     "posterUrl": "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=800&auto=format&fit=crop&q=80",
     "youtubeUrl": "https://www.youtube.com/watch?v=k5q4g46gPso",
-    "lyrics": "ఇంకేం ఇంకేం ఇంకేం కావాలే\nచాలే ఇది చాలే\nనీకై నువ్వే వచ్చి వాలావే\nఇకపై తిరనాళ్ళే\n\nగుండెల్లోన గూడు కట్టి\nగువ్వల్లే చేరిన పిట్ట\nనీతో ఉంటే కాలం గెంటే\nఆనందాల చిరు జల్లే\n\nఇంకేం ఇంకేం ఇంకేం కావాలే\nచాలే ఇది చాలే\nనీకై నువ్వే వచ్చి వాలావే\nఇకపై తిరనాళ్ళే\n\nకంటిపాపలా నిను కాచుకుంటా\nకాలు కింద పెట్టనీయకుండా చూసుకుంటా\nనీ చిరునవ్వే నాకు శ్రీరామరక్ష\nనీ తోడై ఉంటే చాలు ఏనాటికైనా!\n\n--- English Script (Transliteration) ---\nInkem inkem inkem kaavaale\nChaale idi chaale\nNeekai nuvve vachi vaalaave\nIkapai thiranaalle\n\nGundellona goodu katti\nGuvvalle cherina pitta\nNeetho unte kaalam gente\nAanandaala chiru jalle",
+    "lyrics": "ఇంకేం ఇంకేం ఇంకేం కావాలే\nచాలే ఇది చాలే\nనీకై నువ్వే వచ్చి వాలావే\nఇకపై తిరనాళ్ళే\n\nగుండెల్లోన గూడు కట్టి\nగువ్వల్లే చేరిన పిట్ట\nనీతో ఉంటే కాలం గెంటే\nఆనందాల చిరు జల్లే\n\nఇంకేం ఇంకేం ఇంకేం కావాలే\nచాలే ఇది చాలే\nనీకై నువ్వే వచ్చి వాలావే\nఇకపై తిరనాళ్ళే\n\nకంటిపాపలా నిను కాచుకుంటా\nకాలు కింద పెట్టనీయకుండా చూసుకుంటా\nనీ చిరునవ్వే నాకు శ్రీరామరక్ష\nనీ తోడై ఉంటే చాలు ఏనాటికైనా!",
     "meaning": "A joyous celebration of love where the protagonist wonders what else in the world one could possibly need when their beloved is beside them.",
     "tags": [
       "Sid Sriram",
@@ -165,7 +170,8 @@
     "featured": true,
     "status": "published",
     "createdAt": "2024-01-20T12:00:00+00:00",
-    "updatedAt": null
+    "updatedAt": null,
+    "englishLyrics": "Inkem inkem inkem kaavaale\nChaale idi chaale\nNeekai nuvve vachi vaalaave\nIkapai thiranaalle\n\nGundellona goodu katti\nGuvvalle cherina pitta\nNeetho unte kaalam gente\nAanandaala chiru jalle\n\nInkem inkem inkem kaavaale\nChaale idi chaale\nNeekai nuvve vachi vaalaave\nIkapai thiranaalle\n\nKantipapala ninu kaachukuntaa\nKaalu kinda pettaneeyakunda choosukuntaa\nNee chirunavve naaku sreeraamaraksha\nNee thodai unte chaalu enaatikaina!"
   },
   {
     "id": "1",
@@ -180,7 +186,7 @@
     "language": "Telugu",
     "posterUrl": "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=800&auto=format&fit=crop&q=80",
     "youtubeUrl": "https://www.youtube.com/watch?v=ocpe1c1Xfpo",
-    "lyrics": "కళ్ళతో మాట్లాడే కమ్మని చిన్నదానా\nమనసునే దోచావే మాయల మారెమ్మ\nవయ్యారి నడకలతో హృదయం మీటినావే\nనీ చూపే నా ప్రాణం నిలిపే అమృతమాయే\n\nసామజవరగమనా నిను చూసి ఆగలేనా\nనీ అందం వర్ణించ పదాలు చాలకున్నా\nసామజవరగమనా మదిలోన నిండిపోవా\nనీ జ్ఞాపకం తోడై నన్నే నడిపించగా\n\nకురులనే తాకే గాలికి ఈర్ష్య పుడుతుందే\nపెదవులపై చేరే చిరునవ్వే వెన్నెలవుతుందే\nఅడుగులో అడుగేసి నాతో నడుస్తావా\nకలలనే నిజం చేసి జతగా ఉంటావా\n\nసామజవరగమనా నిను చూసి ఆగలేనా\nనీ అందం వర్ణించ పదాలు చాలకున్నా\nసామజవరగమనా మదిలోన నిండిపోవా\nనీ జ్ఞాపకం తోడై నన్నే నడిపించగా\n\n--- English Script (Transliteration) ---\nKallatho maatlaade kammani chinnadaanaa\nManasune dochaave maayala maaremma\nVayyaari nadakalatho hrudayam meetinaave\nNee choope naa praanam nilipe amruthamaye\n\nSamajavaragamana ninu choosi aagalena\nNee andam varnincha padaalu chaalakunna\nSamajavaragamana madilona nindipova\nNee gnaapakam thodai nanne nadipinchaga",
+    "lyrics": "కళ్ళతో మాట్లాడే కమ్మని చిన్నదానా\nమనసునే దోచావే మాయల మారెమ్మ\nవయ్యారి నడకలతో హృదయం మీటినావే\nనీ చూపే నా ప్రాణం నిలిపే అమృతమాయే\n\nసామజవరగమనా నిను చూసి ఆగలేనా\nనీ అందం వర్ణించ పదాలు చాలకున్నా\nసామజవరగమనా మదిలోన నిండిపోవా\nనీ జ్ఞాపకం తోడై నన్నే నడిపించగా\n\nకురులనే తాకే గాలికి ఈర్ష్య పుడుతుందే\nపెదవులపై చేరే చిరునవ్వే వెన్నెలవుతుందే\nఅడుగులో అడుగేసి నాతో నడుస్తావా\nకలలనే నిజం చేసి జతగా ఉంటావా\n\nసామజవరగమనా నిను చూసి ఆగలేనా\nనీ అందం వర్ణించ పదాలు చాలకున్నా\nసామజవరగమనా మదిలోన నిండిపోవా\nనీ జ్ఞాపకం తోడై నన్నే నడిపించగా",
     "meaning": "Samajavaragamana is a romantic tribute expressing awe and adoration for a woman's grace, walking style, and ethereal elegance. Sirivennela's poetic mastery compares her beauty to divine classical grace.",
     "tags": [
       "Sid Sriram",
@@ -194,6 +200,7 @@
     "featured": true,
     "status": "published",
     "createdAt": "2024-01-15T10:00:00+00:00",
-    "updatedAt": null
+    "updatedAt": null,
+    "englishLyrics": "Kallatho maatlaade kammani chinnadaanaa\nManasune dochaave maayala maaremma\nVayyaari nadakalatho hrudayam meetinaave\nNee choope naa praanam nilipe amruthamaye\n\nSamajavaragamana ninu choosi aagalena\nNee andam varnincha padaalu chaalakunna\nSamajavaragamana madilona nindipova\nNee gnaapakam thodai nanne nadipinchaga\n\nKurulane thaake gaaliki eershya puduthunde\nPedavulapai chere chirunavve vennelavuthunde\nAdugulo adugesi naatho nadusthaava\nKalalane nijam chesi jathagaa untaava\n\nSamajavaragamana ninu choosi aagalena\nNee andam varnincha padaalu chaalakunna\nSamajavaragamana madilona nindipova\nNee gnaapakam thodai nanne nadipinchaga"
   }
 ]

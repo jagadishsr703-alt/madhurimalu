@@ -18,6 +18,7 @@ CREATE TABLE IF NOT EXISTS public.songs (
   "posterUrl" TEXT NOT NULL,
   "youtubeUrl" TEXT,
   lyrics TEXT NOT NULL,
+  "englishLyrics" TEXT,
   meaning TEXT,
   tags TEXT[],
   views INTEGER DEFAULT 0,
@@ -48,6 +49,9 @@ CREATE POLICY "Allow full access for website"
   FOR ALL 
   USING (true) 
   WITH CHECK (true);
+
+-- 4. Migration helper (run if table already exists from previous version)
+ALTER TABLE public.songs ADD COLUMN IF NOT EXISTS "englishLyrics" TEXT;
 
 -- 4. Storage Bucket for Movie Posters (Free 1GB)
 INSERT INTO storage.buckets (id, name, public) 

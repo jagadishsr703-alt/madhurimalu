@@ -65,6 +65,7 @@ export default function AdminDashboard() {
     posterUrl: '',
     youtubeUrl: '',
     lyrics: '',
+    englishLyrics: '',
     meaning: '',
     tags: [],
     featured: false,
@@ -118,6 +119,7 @@ export default function AdminDashboard() {
       posterUrl: '',
       youtubeUrl: '',
       lyrics: '',
+      englishLyrics: '',
       meaning: '',
       tags: [],
       featured: false,
@@ -141,6 +143,7 @@ export default function AdminDashboard() {
       posterUrl: song.posterUrl,
       youtubeUrl: song.youtubeUrl || '',
       lyrics: song.lyrics,
+      englishLyrics: song.englishLyrics || '',
       meaning: song.meaning || '',
       tags: song.tags || [],
       featured: Boolean(song.featured),
@@ -492,7 +495,7 @@ export default function AdminDashboard() {
             <div>
               <div className="flex items-center justify-between mb-2">
                 <label className="block text-xs font-semibold uppercase tracking-wider text-slate-700 dark:text-slate-300">
-                  Full Song Lyrics * (Type or Paste in Telugu or English)
+                  Full Song Lyrics in Telugu Script (తెలుగు) *
                 </label>
                 <span className="text-xs text-amber-600 dark:text-amber-400 font-medium">
                   Use double Enter for verse breaks
@@ -500,12 +503,32 @@ export default function AdminDashboard() {
               </div>
               <textarea
                 required
-                rows={12}
+                rows={10}
                 value={formData.lyrics}
                 onChange={(e) => setFormData({ ...formData, lyrics: e.target.value })}
                 placeholder="సామజవరగమనా నిను చూసి ఆగలేనా...
-(Type or paste Telugu lyrics or English lyrics here)"
+(Type or paste Telugu lyrics in native Telugu script here)"
                 className="w-full p-4 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm font-serif leading-relaxed focus:outline-none focus:ring-2 focus:ring-amber-500"
+              />
+            </div>
+
+            {/* ENGLISH SCRIPT LYRICS (Telugu in English typing) */}
+            <div>
+              <div className="flex items-center justify-between mb-2">
+                <label className="block text-xs font-semibold uppercase tracking-wider text-slate-700 dark:text-slate-300">
+                  English Script Lyrics (Telugu Words Typed in English)
+                </label>
+                <span className="text-xs text-slate-400">
+                  e.g. Butta bomma butta bomma nannu suttukuntive...
+                </span>
+              </div>
+              <textarea
+                rows={8}
+                value={formData.englishLyrics || ''}
+                onChange={(e) => setFormData({ ...formData, englishLyrics: e.target.value })}
+                placeholder="Samajavaragamana ninu choosi aagalena...
+(Type Telugu lyrics using English letters here)"
+                className="w-full p-4 rounded-2xl bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-sm font-sans leading-relaxed focus:outline-none focus:ring-2 focus:ring-amber-500"
               />
             </div>
 

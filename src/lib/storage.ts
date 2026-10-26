@@ -143,7 +143,15 @@ export async function createSong(input: SongInput): Promise<Song> {
       const res = await withTimeout(
         supabase.from('songs').upsert(newSong).select().single()
       );
-      const { data, error } = res as any;
+      let { data, error } = res as any;
+      if (error && (error.message?.includes('englishLyrics') || error.details?.includes('englishLyrics'))) {
+        const { englishLyrics, ...songWithoutEnglish } = newSong;
+        const retryRes = await withTimeout(
+          supabase.from('songs').upsert(songWithoutEnglish).select().single()
+        );
+        data = (retryRes as any).data;
+        error = (retryRes as any).error;
+      }
       if (!error && data) {
         const songs = getLocalSongs();
         songs.unshift(data as Song);
@@ -183,7 +191,15 @@ export async function updateSong(id: string, updates: Partial<SongInput>): Promi
       const res = await withTimeout(
         supabase.from('songs').upsert(updatedSong).select().single()
       );
-      const { data, error } = res as any;
+      let { data, error } = res as any;
+      if (error && (error.message?.includes('englishLyrics') || error.details?.includes('englishLyrics'))) {
+        const { englishLyrics, ...songWithoutEnglish } = updatedSong;
+        const retryRes = await withTimeout(
+          supabase.from('songs').upsert(songWithoutEnglish).select().single()
+        );
+        data = (retryRes as any).data;
+        error = (retryRes as any).error;
+      }
 
       if (!error && data) {
         const index = songs.findIndex((s) => s.id === id);
@@ -249,8 +265,13 @@ export async function syncLocalSongsToSupabase(): Promise<{ count: number; error
 
   try {
     const songs = getLocalSongs();
-    const res = await withTimeout(supabase.from('songs').upsert(songs), 10000);
-    const { error } = res as any;
+    let res = await withTimeout(supabase.from('songs').upsert(songs), 10000);
+    let { error } = res as any;
+    if (error && (error.message?.includes('englishLyrics') || error.details?.includes('englishLyrics'))) {
+      const sanitizedSongs = songs.map(({ englishLyrics, ...rest }) => rest);
+      res = await withTimeout(supabase.from('songs').upsert(sanitizedSongs), 10000);
+      error = (res as any).error;
+    }
     if (error) {
       return { count: 0, error: error.message };
     }
