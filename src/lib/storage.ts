@@ -265,6 +265,15 @@ export async function syncLocalSongsToSupabase(): Promise<{ count: number; error
 
   try {
     const songs = getLocalSongs();
+    const validIds = songs.map((s) => s.id);
+    if (validIds.length > 0) {
+      try {
+        await withTimeout(supabase.from('songs').delete().not('id', 'in', `(${validIds.join(',')})`), 6000);
+      } catch (cleanErr) {
+        console.warn('Purge old songs notice:', cleanErr);
+      }
+    }
+
     let res = await withTimeout(supabase.from('songs').upsert(songs), 10000);
     let { error } = res as any;
     if (error && (error.message?.includes('englishLyrics') || error.details?.includes('englishLyrics'))) {
