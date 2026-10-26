@@ -343,18 +343,19 @@ export default function LyricsViewer({ song }: { song: Song }) {
                       position: 'fixed',
                       left: position ? `${position.x}px` : undefined,
                       top: position ? `${position.y}px` : undefined,
-                      right: position ? undefined : '20px',
-                      bottom: position ? undefined : '20px',
+                      right: position ? undefined : '24px',
+                      bottom: position ? undefined : '24px',
                       zIndex: 9999,
                       width: audioMode ? '290px' : '330px',
                       maxWidth: '92vw',
+                      transition: isDragging ? 'none' : 'transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease, width 0.3s ease',
                     }
                   : undefined
               }
               className={
                 isFloating
-                  ? 'rounded-2xl shadow-2xl overflow-hidden border-2 border-amber-500/80 bg-slate-950 text-white animate-fade-in transition-all ring-4 ring-black/40'
-                  : 'w-full'
+                  ? 'rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,0.6)] overflow-hidden border border-amber-500/40 bg-slate-950 text-white select-none'
+                  : 'w-full transition-all duration-300'
               }
             >
               {/* Floating Mini-Player Drag Handle & Bar */}

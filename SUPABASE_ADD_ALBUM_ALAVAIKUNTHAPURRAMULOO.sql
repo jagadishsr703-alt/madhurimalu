@@ -346,3 +346,4 @@ ON CONFLICT (id) DO UPDATE SET
   meaning = EXCLUDED.meaning,
   tags = EXCLUDED.tags,
   "updatedAt" = now();
+
