@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Song } from '@/types';
 import { 
   Copy, 
@@ -14,7 +14,12 @@ import {
   Calendar, 
   Headphones, 
   Info,
-  Video
+  Video,
+  GripHorizontal,
+  X,
+  Minimize2,
+  Maximize2,
+  Pin
 } from 'lucide-react';
 import AdSenseBanner from './AdSenseBanner';
 
@@ -23,6 +28,15 @@ export default function LyricsViewer({ song }: { song: Song }) {
   const [copied, setCopied] = useState<boolean>(false);
   const [showVideo, setShowVideo] = useState<boolean>(false);
   const [sharedToast, setSharedToast] = useState<string>('');
+
+  // Floating PiP Mini-Player states
+  const [isFloating, setIsFloating] = useState<boolean>(false);
+  const [position, setPosition] = useState<{ x: number; y: number } | null>(null);
+  const [isDragging, setIsDragging] = useState<boolean>(false);
+
+  const inlineVideoRef = useRef<HTMLDivElement>(null);
+  const playerWrapperRef = useRef<HTMLDivElement>(null);
+  const dragRef = useRef<{ startX: number; startY: number; initX: number; initY: number } | null>(null);
 
   const handleCopy = async () => {
     try {
@@ -45,9 +59,7 @@ export default function LyricsViewer({ song }: { song: Song }) {
     if (navigator.share) {
       try {
         await navigator.share(shareData);
-      } catch (err) {
-        // User cancelled or share failed
-      }
+      } catch (err) {}
     } else {
       await navigator.clipboard.writeText(window.location.href);
       setSharedToast('Link copied to clipboard!');
@@ -61,7 +73,6 @@ export default function LyricsViewer({ song }: { song: Song }) {
     window.open(`https://api.whatsapp.com/send?text=${text}${url}`, '_blank');
   };
 
-  // Extract YouTube embed ID if full URL provided
   const getEmbedUrl = (url?: string) => {
     if (!url) return null;
     const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
@@ -70,6 +81,110 @@ export default function LyricsViewer({ song }: { song: Song }) {
   };
 
   const embedUrl = getEmbedUrl(song.youtubeUrl);
+
+  // Auto-float mini-player when scrolled past the original video container
+  useEffect(() => {
+    if (!showVideo) {
+      setIsFloating(false);
+      return;
+    }
+
+    const handleScroll = () => {
+      if (!inlineVideoRef.current) return;
+      const rect = inlineVideoRef.current.getBoundingClientRect();
+      // If the top inline player has scrolled off the screen
+      if (rect.bottom < 80) {
+        setIsFloating(true);
+      } else {
+        setIsFloating(false);
+        setPosition(null); // Reset custom dragged position when docked back
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [showVideo]);
+
+  // Handle Dragging cursor events
+  useEffect(() => {
+    if (!isDragging) return;
+
+    const handleMouseMove = (e: MouseEvent) => {
+      if (!dragRef.current) return;
+      const dx = e.clientX - dragRef.current.startX;
+      const dy = e.clientY - dragRef.current.startY;
+
+      const playerWidth = 340;
+      const playerHeight = 230;
+
+      const newX = Math.max(12, Math.min(window.innerWidth - playerWidth - 12, dragRef.current.initX + dx));
+      const newY = Math.max(12, Math.min(window.innerHeight - playerHeight - 12, dragRef.current.initY + dy));
+
+      setPosition({ x: newX, y: newY });
+    };
+
+    const handleMouseUp = () => {
+      setIsDragging(false);
+      dragRef.current = null;
+    };
+
+    const handleTouchMove = (e: TouchEvent) => {
+      if (!dragRef.current || !e.touches[0]) return;
+      const touch = e.touches[0];
+      const dx = touch.clientX - dragRef.current.startX;
+      const dy = touch.clientY - dragRef.current.startY;
+
+      const playerWidth = 300;
+      const playerHeight = 210;
+
+      const newX = Math.max(8, Math.min(window.innerWidth - playerWidth - 8, dragRef.current.initX + dx));
+      const newY = Math.max(8, Math.min(window.innerHeight - playerHeight - 8, dragRef.current.initY + dy));
+
+      setPosition({ x: newX, y: newY });
+    };
+
+    const handleTouchEnd = () => {
+      setIsDragging(false);
+      dragRef.current = null;
+    };
+
+    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mouseup', handleMouseUp);
+    window.addEventListener('touchmove', handleTouchMove);
+    window.addEventListener('touchend', handleTouchEnd);
+
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mouseup', handleMouseUp);
+      window.removeEventListener('touchmove', handleTouchMove);
+      window.removeEventListener('touchend', handleTouchEnd);
+    };
+  }, [isDragging]);
+
+  const startDrag = (e: React.MouseEvent) => {
+    if (!playerWrapperRef.current) return;
+    const rect = playerWrapperRef.current.getBoundingClientRect();
+    dragRef.current = {
+      startX: e.clientX,
+      startY: e.clientY,
+      initX: rect.left,
+      initY: rect.top,
+    };
+    setIsDragging(true);
+  };
+
+  const startTouchDrag = (e: React.TouchEvent) => {
+    if (!playerWrapperRef.current || !e.touches[0]) return;
+    const touch = e.touches[0];
+    const rect = playerWrapperRef.current.getBoundingClientRect();
+    dragRef.current = {
+      startX: touch.clientX,
+      startY: touch.clientY,
+      initX: rect.left,
+      initY: rect.top,
+    };
+    setIsDragging(true);
+  };
 
   // Split lyrics by double line breaks into stanzas
   const stanzas = song.lyrics.split(/\n\s*\n/).filter(Boolean);
@@ -166,7 +281,7 @@ export default function LyricsViewer({ song }: { song: Song }) {
                   className="inline-flex items-center gap-2 px-3.5 py-2.5 rounded-xl bg-red-500/10 text-red-600 dark:text-red-400 hover:bg-red-500/20 text-xs font-semibold transition"
                 >
                   <Video className="w-4 h-4" />
-                  <span>{showVideo ? 'Hide Video' : 'Watch Video'}</span>
+                  <span>{showVideo ? 'Hide Player' : 'Watch Video'}</span>
                 </button>
               )}
             </div>
@@ -179,21 +294,115 @@ export default function LyricsViewer({ song }: { song: Song }) {
           </div>
         </div>
 
-        {/* Embedded YouTube Player if toggled */}
+        {/* Embedded YouTube Player Container */}
         {showVideo && embedUrl && (
-          <div className="mt-6 pt-6 border-t border-slate-100 dark:border-slate-800">
-            <h3 className="text-sm font-semibold text-slate-800 dark:text-slate-200 mb-3 flex items-center gap-2">
-              <Video className="w-4 h-4 text-red-600" />
-              <span>Official Video / Audio Player</span>
-            </h3>
-            <div className="aspect-video w-full rounded-2xl overflow-hidden shadow-inner bg-black">
-              <iframe
-                src={`${embedUrl}?autoplay=1`}
-                title={`${song.title} Video Song`}
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-                className="w-full h-full border-0"
-              />
+          <div ref={inlineVideoRef} className="mt-6 pt-6 border-t border-slate-100 dark:border-slate-800">
+            {/* Placeholder space keeper when floating to prevent layout shift */}
+            {isFloating && (
+              <div className="aspect-video w-full rounded-2xl border-2 border-dashed border-slate-300 dark:border-slate-700/60 bg-slate-100/50 dark:bg-slate-800/20 flex flex-col items-center justify-center text-slate-500 text-xs gap-2">
+                <Video className="w-6 h-6 text-amber-500 animate-pulse" />
+                <span>Video is floating in mini-player (scroll up or drag anywhere)</span>
+                <button
+                  onClick={() => {
+                    setIsFloating(false);
+                    setPosition(null);
+                    window.scrollTo({ top: inlineVideoRef.current?.offsetTop ? inlineVideoRef.current.offsetTop - 100 : 0, behavior: 'smooth' });
+                  }}
+                  className="px-3 py-1 rounded-lg bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 text-[11px] font-semibold text-amber-600 dark:text-amber-400 hover:bg-slate-50"
+                >
+                  Dock Player Back Here
+                </button>
+              </div>
+            )}
+
+            {/* Active Video Player Wrapper (Stays mounted so audio never stops!) */}
+            <div
+              ref={playerWrapperRef}
+              style={
+                isFloating
+                  ? {
+                      position: 'fixed',
+                      left: position ? `${position.x}px` : undefined,
+                      top: position ? `${position.y}px` : undefined,
+                      right: position ? undefined : '20px',
+                      bottom: position ? undefined : '20px',
+                      zIndex: 9999,
+                      width: '320px',
+                      maxWidth: '92vw',
+                    }
+                  : undefined
+              }
+              className={
+                isFloating
+                  ? 'rounded-2xl shadow-2xl overflow-hidden border-2 border-amber-500/80 bg-slate-950 text-white animate-fade-in transition-shadow ring-4 ring-black/40'
+                  : 'w-full'
+              }
+            >
+              {/* Floating Mini-Player Drag Handle & Bar */}
+              {isFloating ? (
+                <div
+                  onMouseDown={startDrag}
+                  onTouchStart={startTouchDrag}
+                  className="px-3 py-2 bg-gradient-to-r from-slate-900 to-slate-800 border-b border-slate-700/80 flex items-center justify-between cursor-grab active:cursor-grabbing select-none"
+                  title="Click & Drag with cursor to place anywhere on screen"
+                >
+                  <div className="flex items-center gap-1.5 min-w-0">
+                    <GripHorizontal className="w-4 h-4 text-amber-400 flex-shrink-0" />
+                    <span className="text-[11px] font-bold text-slate-200 truncate">
+                      {song.title} ({song.movie})
+                    </span>
+                  </div>
+
+                  <div className="flex items-center gap-1.5 flex-shrink-0 ml-2">
+                    <span className="text-[9px] uppercase tracking-wider px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-400 font-mono">
+                      Drag Me
+                    </span>
+                    <button
+                      onClick={() => {
+                        setIsFloating(false);
+                        setPosition(null);
+                        window.scrollTo({ top: inlineVideoRef.current?.offsetTop ? inlineVideoRef.current.offsetTop - 100 : 0, behavior: 'smooth' });
+                      }}
+                      className="p-1 text-slate-400 hover:text-white rounded hover:bg-slate-700 transition"
+                      title="Dock back to top"
+                    >
+                      <Pin className="w-3.5 h-3.5" />
+                    </button>
+                    <button
+                      onClick={() => {
+                        setShowVideo(false);
+                        setIsFloating(false);
+                        setPosition(null);
+                      }}
+                      className="p-1 text-slate-400 hover:text-red-400 rounded hover:bg-slate-700 transition"
+                      title="Close player"
+                    >
+                      <X className="w-3.5 h-3.5" />
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <div className="flex items-center justify-between mb-3">
+                  <h3 className="text-sm font-semibold text-slate-800 dark:text-slate-200 flex items-center gap-2">
+                    <Video className="w-4 h-4 text-red-600" />
+                    <span>Official Video / Audio Player</span>
+                  </h3>
+                  <span className="text-[11px] text-slate-400 hidden sm:inline">
+                    (Scroll down to read lyrics, video floats automatically to corner)
+                  </span>
+                </div>
+              )}
+
+              {/* YouTube Iframe (Never unmounted so playback never stops!) */}
+              <div className="aspect-video w-full rounded-b-2xl overflow-hidden bg-black relative">
+                <iframe
+                  src={`${embedUrl}?autoplay=1`}
+                  title={`${song.title} Video Song`}
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  className="w-full h-full border-0"
+                />
+              </div>
             </div>
           </div>
         )}
@@ -229,6 +438,19 @@ export default function LyricsViewer({ song }: { song: Song }) {
         </div>
 
         <div className="flex items-center gap-2">
+          {embedUrl && (
+            <button
+              onClick={() => {
+                setShowVideo(true);
+                setIsFloating(true);
+              }}
+              className="text-xs font-medium text-red-600 dark:text-red-400 hover:underline flex items-center gap-1 sm:hidden"
+            >
+              <Video className="w-3.5 h-3.5" />
+              <span>Mini Player</span>
+            </button>
+          )}
+
           <button
             onClick={handleCopy}
             className="text-xs font-medium text-slate-600 dark:text-slate-300 hover:text-amber-600 dark:hover:text-amber-400 flex items-center gap-1"
@@ -262,7 +484,7 @@ export default function LyricsViewer({ song }: { song: Song }) {
         </div>
       </div>
 
-      {/* Song Meaning & Editorial Context (Important for SEO & AdSense approval) */}
+      {/* Song Meaning & Editorial Context */}
       {song.meaning && (
         <div className="bg-gradient-to-br from-amber-500/10 via-orange-500/5 to-transparent border border-amber-500/20 rounded-3xl p-6 sm:p-8 mb-8">
           <div className="flex items-center gap-2 text-amber-600 dark:text-amber-400 font-bold text-sm uppercase tracking-wider mb-2">
