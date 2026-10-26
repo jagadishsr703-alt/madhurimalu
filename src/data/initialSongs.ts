@@ -1,248 +1,319 @@
-import { Song } from '@/types';
+import { Song } from "@/types";
 
 export const INITIAL_SONGS: Song[] = [
   {
-    id: "1",
-    slug: "samajavaragamana-ala-vaikunthapurramuloo",
-    title: "Samajavaragamana",
-    movie: "Ala Vaikunthapurramuloo",
-    singers: "Sid Sriram",
-    lyricist: "Sirivennela Seetharama Sastry",
-    musicDirector: "Thaman S",
-    cast: "Allu Arjun, Pooja Hegde",
-    year: 2020,
-    language: "Telugu",
-    posterUrl: "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=800&auto=format&fit=crop&q=80",
-    youtubeUrl: "https://www.youtube.com/watch?v=ocpe1c1Xfpo",
-    meaning: "Samajavaragamana is a romantic tribute expressing awe and adoration for a woman's grace, walking style, and ethereal elegance. Sirivennela's poetic mastery compares her beauty to divine classical grace.",
-    featured: true,
-    views: 0,
-    status: "published",
-    createdAt: "2024-01-15T10:00:00Z",
-    tags: ["Sid Sriram", "Thaman S", "Allu Arjun", "Romantic", "Melody", "Samajavaragamana Lyrics"],
-    lyrics: `కళ్ళతో మాట్లాడే కమ్మని చిన్నదానా
-మనసునే దోచావే మాయల మారెమ్మ
-వయ్యారి నడకలతో హృదయం మీటినావే
-నీ చూపే నా ప్రాణం నిలిపే అమృతమాయే
-
-సామజవరగమనా నిను చూసి ఆగలేనా
-నీ అందం వర్ణించ పదాలు చాలకున్నా
-సామజవరగమనా మదిలోన నిండిపోవా
-నీ జ్ఞాపకం తోడై నన్నే నడిపించగా
-
-కురులనే తాకే గాలికి ఈర్ష్య పుడుతుందే
-పెదవులపై చేరే చిరునవ్వే వెన్నెలవుతుందే
-అడుగులో అడుగేసి నాతో నడుస్తావా
-కలలనే నిజం చేసి జతగా ఉంటావా
-
-సామజవరగమనా నిను చూసి ఆగలేనా
-నీ అందం వర్ణించ పదాలు చాలకున్నా
-సామజవరగమనా మదిలోన నిండిపోవా
-నీ జ్ఞాపకం తోడై నన్నే నడిపించగా
-
---- English Script (Transliteration) ---
-Kallatho maatlaade kammani chinnadaanaa
-Manasune dochaave maayala maaremma
-Vayyaari nadakalatho hrudayam meetinaave
-Nee choope naa praanam nilipe amruthamaye
-
-Samajavaragamana ninu choosi aagalena
-Nee andam varnincha padaalu chaalakunna
-Samajavaragamana madilona nindipova
-Nee gnaapakam thodai nanne nadipinchaga`
+    "id": "temper-01-one-more-time",
+    "slug": "one-more-time-temper",
+    "title": "One More Time",
+    "movie": "Temper",
+    "singers": "Ranjith Govind, Lipsika Bhashyam",
+    "lyricist": "Kandikonda",
+    "musicDirector": "Anup Rubens",
+    "cast": "Jr NTR, Kajal Aggarwal",
+    "year": 2015,
+    "language": "Telugu",
+    "posterUrl": "https://raghavmv.wordpress.com/wp-content/uploads/2015/02/temper-movie-poster_142181589800.jpg",
+    "youtubeUrl": "https://www.youtube.com/watch?v=QYOCqHcj2xc",
+    "lyrics": "నిన్ను చూసి పడిపోయా ఆన్ ది స్పాట్\nనన్ను నేను మర్చిపోయా ఆన్ ది స్పాట్\nహ నిన్ను చూసి పడిపోయా ఆన్ ది స్పాట్\nనన్ను నేను మర్చిపోయా ఆన్ ది స్పాట్\nమ్యాజిక్ ఏదో చేసినట్టు ఆన్ ది స్పాట్\nనీ మాటలకూ పడిపోయా ఆన్ ది స్పాట్\n\nనను ఏం చేసావో ఇంతకీ\nఅది అర్థం కాదే ఎంతకీ\nనా గుండె పట్టి లాగి లాగి చంపేసావు\nగిల్లి గిల్లి ప్రేమించేసేలా\n\nఓ వన్ మోర్ టైమ్ బేబీ వన్ మోర్ టైమ్\nమళ్ళీ మళ్ళీ చెప్పా మాట వన్ మోర్ టైమ్\nవన్ మోర్ టైమ్ బేబీ వన్ మోర్ టైమ్\nమళ్ళీ మళ్ళీ చెప్పా మాట వన్ మోర్ టైమ్\nఓహ్ వన్ మోర్ టైమ్... ఆన్ ది స్పాట్\nవన్ మోర్ టైమ్...\n\nకళ్ళ తోటి నవ్వి నన్ను గాయపరిచావే\nపెదవి తోటి సైగ చేసి నిద్ర చెరిపావే\nమది ఊగేసి ఉయ్యాలా నీతో ఆడింది జంపాలా\nనాకు నానారకాల నచ్చావే బాల ర\n\nహా నిన్ను చూసి పడిపోయా ఆన్ ది స్పాట్\nనన్ను నేను మర్చిపోయా ఆన్ ది స్పాట్\n\nఏంటో ఏమో ఎదను మొత్తం మాయచేసావే\nగుండెలోకి గుండు సూదిలా కూర్చుకున్నావే\nనాకు ఇస్తావా అందాల నాతో వస్తావా కండాల\nనన్ను మిఠాయిలాగా మింగేసి పోరా ర\n\nహా నిన్ను చూసి పడిపోయా ఆన్ ది స్పాట్\nనన్ను నేను మర్చిపోయా ఆన్ ది స్పాట్\nమ్యాజిక్ ఏదో చేసినట్టు ఆన్ ది స్పాట్\nనీ మాటలకూ పడిపోయా ఆన్ ది స్పాట్\n\nనన్ను ఏం చేసావో ఇంతకీ\nఅది అర్థం కాదే ఎంతకీ\nనా గుండె పట్టి లాగి లాగి చంపేసావు\nగిల్లి గిల్లి ప్రేమించేసేలా\n\nవన్ మోర్ టైమ్ బేబీ వన్ మోర్ టైమ్ బేబీ\nమళ్ళీ మళ్ళీ చెప్పా మాట వన్ మోర్ టైమ్\nవన్ మోర్ టైమ్ బేబీ వన్ మోర్ టైమ్ బేబీ\nమళ్ళీ మళ్ళీ చెప్పా మాట వన్ మోర్ టైమ్!",
+    "englishLyrics": "Ninnu choosi padipoya on the spot\nNannu nenu marchipoya on the spot\nHa ninnu choosi padipoya on the spot\nNannu nenu marchipoya on the spot\nMagic edo chesinattu on the spot\nNee maatalaku padipoya on the spot\n\nNanu em chesaavo inthakee\nAdi artham kaade enthakee\nNaa gunde patti laagi laagi champeysavu\nGilli gilli premincheselaa\n\nO one more time baby one more time\nMalli malli cheppa maata one more time\nOne more time baby one more time\nMalli malli cheppa maata one more time\nOh one more time... On the spot\nOne more time...\n\nKalla thoti navvi nannu gaayaparichaave\nPedavi thoti saiga chesi nidra cheripaave\nMadi oogesi uyyaala neetho aadindi jampaala\nNaaku naanaarakaala nachaave baala ra\n\nHa ninnu choosi padipoya on the spot\nNannu nenu marchipoya on the spot\n\nEnto emo edanu motham maayachesaave\nGundeloki gundu soodilaa goorchukunnaave\nNaaku isthaava andaala naatho vasthaava kandaala\nNannu mithaayilaaga mingesi pora ra\n\nHa ninnu choosi padipoya on the spot\nNannu nenu marchipoya on the spot\nMagic edo chesinattu on the spot\nNee maatalaku padipoya on the spot\n\nNannu em chesaavo inthakee\nAdi artham kaade enthakee\nNaa gunde patti laagi laagi champeysavu\nGilli gilli premincheselaa\n\nOne more time baby one more time baby\nMalli malli cheppa maata one more time\nOne more time baby one more time baby\nMalli malli cheppa maata one more time!",
+    "meaning": "A fun and lively romantic duet expressing love at first sight, where the lovers confess their irresistible feelings and urge each other to repeat their romantic words one more time.",
+    "tags": [
+      "Temper Songs",
+      "One More Time Lyrics",
+      "NTR Jr",
+      "Kajal Aggarwal",
+      "Anup Rubens",
+      "Kandikonda",
+      "Ranjith Govind",
+      "Lipsika"
+    ],
+    "views": 0,
+    "featured": true,
+    "status": "published",
+    "createdAt": "2026-10-26T09:20:33.593Z",
+    "updatedAt": "2026-10-26T09:20:33.593Z"
   },
   {
-    id: "2",
-    slug: "inkem-inkem-geetha-govindam",
-    title: "Inkem Inkem Inkem Kaavaale",
-    movie: "Geetha Govindam",
-    singers: "Sid Sriram",
-    lyricist: "Ananta Sriram",
-    musicDirector: "Gopi Sundar",
-    cast: "Vijay Deverakonda, Rashmika Mandanna",
-    year: 2018,
-    language: "Telugu",
-    posterUrl: "https://images.unsplash.com/photo-1470225620780-dba8ba36b745?w=800&auto=format&fit=crop&q=80",
-    youtubeUrl: "https://www.youtube.com/watch?v=k5q4g46gPso",
-    meaning: "A joyous celebration of love where the protagonist wonders what else in the world one could possibly need when their beloved is beside them.",
-    featured: true,
-    views: 0,
-    status: "published",
-    createdAt: "2024-01-20T12:00:00Z",
-    tags: ["Sid Sriram", "Vijay Deverakonda", "Rashmika", "Love", "Inkem Inkem Lyrics"],
-    lyrics: `ఇంకేం ఇంకేం ఇంకేం కావాలే
-చాలే ఇది చాలే
-నీకై నువ్వే వచ్చి వాలావే
-ఇకపై తిరనాళ్ళే
-
-గుండెల్లోన గూడు కట్టి
-గువ్వల్లే చేరిన పిట్ట
-నీతో ఉంటే కాలం గెంటే
-ఆనందాల చిరు జల్లే
-
-ఇంకేం ఇంకేం ఇంకేం కావాలే
-చాలే ఇది చాలే
-నీకై నువ్వే వచ్చి వాలావే
-ఇకపై తిరనాళ్ళే
-
-కంటిపాపలా నిను కాచుకుంటా
-కాలు కింద పెట్టనీయకుండా చూసుకుంటా
-నీ చిరునవ్వే నాకు శ్రీరామరక్ష
-నీ తోడై ఉంటే చాలు ఏనాటికైనా!
-
---- English Script (Transliteration) ---
-Inkem inkem inkem kaavaale
-Chaale idi chaale
-Neekai nuvve vachi vaalaave
-Ikapai thiranaalle
-
-Gundellona goodu katti
-Guvvalle cherina pitta
-Neetho unte kaalam gente
-Aanandaala chiru jalle`
+    "id": "temper-02-choolenge-aasma",
+    "slug": "choolenge-aasma-temper",
+    "title": "Choolenge Aasma",
+    "movie": "Temper",
+    "singers": "Adnan Sami, Ramya Behara, Veena Ghantasala",
+    "lyricist": "Viswa",
+    "musicDirector": "Anup Rubens",
+    "cast": "Jr NTR, Kajal Aggarwal",
+    "year": 2015,
+    "language": "Telugu",
+    "posterUrl": "https://raghavmv.wordpress.com/wp-content/uploads/2015/02/temper-movie-poster_142181589800.jpg",
+    "youtubeUrl": "https://www.youtube.com/watch?v=hLrqJTN7Gmo",
+    "lyrics": "అయ్ లైలా లైలా లైలా లయ తప్పె గుండెలోనా\nసరికొత్త పుంతలో పడ్డా లవ్ లోనా\nఆ నువ్వు పెదవి విప్పకున్నా నీ నవ్వు తెలిపి జానా\nనా వలపు సీమకే ఆహ్వానిస్తున్నా...\n\nతొలి చూపే ఎద నువ్వే తత్తుతర తత్తరబాటే\nమనసేమో వశకాదే నీ బంధీనైపోయా\n\nచూలేంగే ఆస్మా జానేమన్ జానేజా\nకెహ్ రహ ప్యార్ కర్ ఏ సమా\nచూలేంగే ఆస్మా జానేమన్ జానేజా\nకెహ్ రహ ప్యార్ కర్ ఏ సమా\n\nఅవ్.. చెలి ప్రతిమని పికాసో లా ఎద పలకం నింపేశా\nపరువానికి పట్టమే నేడిలా\nఅవ్.. తలమునకల తపస్సేల తమకిది మహా భరోసా\nమనసిస్తే సాగన నీడలా\n\nఅయ్యయ్య చెలి వరమిచ్చే సెలవీరు తెగ నచ్చాలే నీ తీరు\nమరి ఇందరు ఉన్నా నీ సరి రాలేరు\n\nచూలేంగే ఆస్మా జానేమన్ జానేజా\nకెహ్ రహ ప్యార్ కర్ ఏ సమా\nమది గెలిచే దృశ్యమా ఎద లయలో లాస్యమో\nమనసంతా నీకిలా ఆవశ్యమా\n\nహూ చిటుకున దరి సమీపిస్తూ పెనవేయగా పిలిస్తే\nఅలజడులే రేగవ ఎదలో\nఅవ్.. తొలి తికమక తమయిస్తూ సుముఖతతో స్మరిస్తే\nపరుగున జని చేరెనే జతలో\n\nపద పద నెగ్గకు పరువాలు మొదలెట్టుకో మురిపాలు\nకనికట్టు లేవో చూపే నీ బాడీ లో\n\nతొలి చూపే ఎద నువ్వే తత్తుతర తత్తరబాటే\nమనసేమో వశకాదే నీ బంధీనైపోయా\nచూలేంగే ఆస్మా జానేమన్ జానేజా\nకెహ్ రహ ప్యార్ కర్ ఏ సమా\nమది గెలిచే దృశ్యమా ఎద లయలో లాస్యమో\nమనసంతా నీకిలా ఆవశ్యమా...",
+    "englishLyrics": "Ayy Laila Laila Laila laya thappe gundelona\nSarikotha punthalo paddaa love lona\nAa nuvvu pedavi vippakunnaa nee navvu thelipi jaanaa\nNaa valapu seemake aahvaanisthunnaa...\n\nTholi choope yedha nuvve thatthuthara thattharabate\nManasemo vasakaade nee bandheenaipoyaa\n\nChoolenge aasma jaaneman jaanejaa\nKeh raha pyaar kar ye samaa\nChoolenge aasma jaaneman jaanejaa\nKeh raha pyaar kar ye samaa\n\nAwe.. Cheli prathimani Picasso laa yedha palakam nimpesaa\nParuvaaniki pattame nedilaa\nAwe.. Thalamunakala thapassela thamakidi mahaa bharosaa\nManasisthe saagana needalaa\n\nAyyayya cheli varamicche selaveeru thega nachaale nee theeru\nMari indaru unnaa nee sari raaleru\n\nChoolenge aasma jaaneman jaanejaa\nKeh raha pyaar kar ye samaa\nMadhi geliche drushyamaa yedha layalo laasyamo\nManasanthaa neekilaa aavasyamaa\n\nHooo chitukuna dhari sameepisthoo penaveyagaa pilisthe\nAlajadule regava yedhalo\nAwe.. Tholi thikamaka thamayisthoo sumukhathatho smaristhe\nParuguna jani cherene jathalo\n\nPada pada neggaku paruvaalu modalettuko muripaalu\nKanikattulevo choope nee body lo\n\nTholi choope yedha nuvve thatthuthara thattharabate\nManasemo vasakaade nee bandheenaipoyaa\nChoolenge aasma jaaneman jaanejaa\nKeh raha pyaar kar ye samaa\nMadhi geliche drushyamaa yedha layalo laasyamo\nManasanthaa neekilaa aavasyamaa...",
+    "meaning": "A breezy, stylish melody sung by Adnan Sami describing irresistible love, feeling on top of the world, and being totally captivated by beauty.",
+    "tags": [
+      "Choolenge Aasma Lyrics",
+      "Temper Songs",
+      "Adnan Sami",
+      "Jr NTR",
+      "Kajal Aggarwal",
+      "Anup Rubens",
+      "Viswa",
+      "Ramya Behara"
+    ],
+    "views": 0,
+    "featured": true,
+    "status": "published",
+    "createdAt": "2026-10-26T09:20:33.593Z",
+    "updatedAt": "2026-10-26T09:20:33.593Z"
   },
   {
-    id: "3",
-    slug: "butta-bomma-ala-vaikunthapurramuloo",
-    title: "Butta Bomma",
-    movie: "Ala Vaikunthapurramuloo",
-    singers: "Armaan Malik",
-    lyricist: "Ramajogayya Sastry",
-    musicDirector: "Thaman S",
-    cast: "Allu Arjun, Pooja Hegde",
-    year: 2020,
-    language: "Telugu",
-    posterUrl: "https://images.unsplash.com/photo-1511671782779-c97d3d27a1d4?w=800&auto=format&fit=crop&q=80",
-    youtubeUrl: "https://www.youtube.com/watch?v=2mDCVzruYzQ",
-    meaning: "An infectious, vibrant love track comparing the beloved lady to a delicate, beautiful traditional doll (Butta Bomma).",
-    featured: true,
-    views: 0,
-    status: "published",
-    createdAt: "2024-02-01T08:00:00Z",
-    tags: ["Armaan Malik", "Thaman S", "Dance", "Pooja Hegde", "Buttabomma Lyrics", "Butta Bomma Song Lyrics"],
-    lyrics: `ఇంతకన్న మంచి పోలికేది
-నాకు తట్టలేదు కానీ అమ్ముడు
-బుట్టబొమ్మ బుట్టబొమ్మ
-నన్ను సుట్టుకుంటివే
-జిందగీకే అట్టబొమ్మై
-వట్టుకుంటివే
-
-మల్టీకలర్ పూల చొక్కా ఏసి
-మతి పోగొట్టే నడకలేసి
-చిటికెలేసి సైగజేసి
-గుండెకేమో గాలమేసి
-
-బుట్టబొమ్మ బుట్టబొమ్మ
-నన్ను సుట్టుకుంటివే
-జిందగీకే అట్టబొమ్మై
-వట్టుకుంటివే!
-
---- English Script (Transliteration) ---
-Inthakanna manchi polikedi
-Naaku thattaledu kaani ammudoo
-Butta bomma butta bomma
-Nannu suttukuntive
-Zindagike attabommai
-Vattukuntive
-
-Multicolor poola chokka vesi
-Mathi pogotte nadakalesi
-Chitikelesi saigajesi
-Gundekemo gaalamesi
-
-Buttabomma buttabomma
-Nannu suttukuntive
-Zindagike attabommai
-Vattukuntive!`
+    "id": "temper-03-title-track",
+    "slug": "temper-title-song-temper",
+    "title": "Temper (Title Track)",
+    "movie": "Temper",
+    "singers": "Uma Neha, M. L. R. Karthikeyan, Bhargavi Pillai, Simha, Roll Rida",
+    "lyricist": "Bhaskarabhatla",
+    "musicDirector": "Anup Rubens",
+    "cast": "Jr NTR, Kajal Aggarwal",
+    "year": 2015,
+    "language": "Telugu",
+    "posterUrl": "https://raghavmv.wordpress.com/wp-content/uploads/2015/02/temper-movie-poster_142181589800.jpg",
+    "youtubeUrl": "https://www.youtube.com/watch?v=Igj7daqD7bs",
+    "lyrics": "టెంప్.. టెంప్.. టెంపర్.. టెంప్ టెంప్ టెంపర్..\nటెంప్.. టెంప్.. టెంపర్.. టెంప్ టెంప్ టెంపర్..\n\nHe's got the temper.. He's got the pamper..\nAnd the girls go crazy yo!\n\nనే తాత టెంపర్.. నే అయ్య టెంపర్..\nబాబాయ్ టెంపర్.. నువ్వింకా టెంపర్!\nబ్లడ్ లోనే ఉన్నదమ్మో బెండ్‌ తీసే టెంపరే..\nదమ్మున్నోడి ప్రతివోడికి ఉండాల్సింది టెంపరే..\n\nహో ఎవడైనా గెలికాడో లేచిపోద్ది టెంపరే..\nకంట్రోల్ తప్పిందంటే మాట వినదే టెంపరే..\nఓలమ్మి అమ్మి అమ్మి ఆమి తుమి టెంపర్ చూస్తావా..\n\nసబ్ కో పటాలే.. సబ్ కో బచాలే.. నాచ్ నాచ్ నాచ్ నాచ్..\nసబ్ కో పటాలే.. సబ్ కో బచాలే.. నాచ్ నాచ్ నాచ్ నాచ్..\n\nనే తాత టెంపర్.. నే అయ్య టెంపర్..\nబాబాయ్ టెంపర్.. నువ్వింకా టెంపర్!\n\nతాకి చూస్తూ ఉంటే కండల్.. అందాల పాపికొండల్..\nఅరే వింటర్ లోను వేడెక్కిస్తాయే..\nఅట్టా మండుతుంటే ఎండల్.. ఒంపుల్లో నీళ్ల కుండల్..\nగొంతుండే దాహం పుట్టిస్తున్నాయే హేయ్..\n\nనీ మాటల్ టెంపర్.. చూపులు టెంపర్..\nచేతలు టెంపర్.. ఓయ్ ఒరబ్బా..\nనీచే టెంపర్.. ఉపేర్ టెంపర్..\nటోటల్ టెంపర్.. ఓయ్..\nటెంపరేచర్ నే పెంచేసినావే..\n\nసబ్ కో పటాలే.. సబ్ కో బచాలే.. నాచ్ నాచ్ నాచ్ నాచ్..\nసబ్ కో పటాలే.. సబ్ కో బచాలే.. నాచ్ నాచ్ నాచ్ నాచ్..\n\nఆగలేను గంటల్.. పరువాల పాడిపంటల్..\nనిఖారంగా నీకే ఇచ్చేసుకుంటలే..\nఅట్టా రేపుతుంటే మంటల్.. ఎక్కుద్దే నాకు మెంటల్..\nనువ్వివ్వకపోతే లాగేసుకుంటలే..\n\nనీ ఇంటా టెంపర్.. బైటా టెంపర్..\nఅంతా టెంపర్.. ఓయ్ ఒరబ్బా..\nఆగే టెంపర్.. పీచే టెంపర్..\nపూరా టెంపర్.. ఓయ్..\nటెంప్ట్ చేస్తూ ఉంటే ఆగేదేలాగే..\n\nసబ్ కో పటాలే.. సబ్ కో బచాలే.. నాచ్ నాచ్ నాచ్ నాచ్..\nసబ్ కో పటాలే.. సబ్ కో బచాలే.. నాచ్ నాచ్ నాచ్ నాచ్..\n\nనే తాత టెంపర్.. నే అయ్య టెంపర్..\nబాబాయ్ టెంపర్.. నువ్వింకా టెంపర్!",
+    "englishLyrics": "Temp.. Temp.. Temper.. Temp temp temper..\nTemp.. Temp.. Temper.. Temp temp temper..\n\nHe's got the temper.. He's got the pamper..\nAnd the girls go crazy yo!\n\nNe thaatha temper.. Ne ayya temper..\nBaabaai temper.. Nuvvinkaa temper!\nBlood lone unnadhammo bend-u theese tempare..\nDammunnodi prathivodiki undaalsindi tempare..\n\nHo evadainaa gelikaado lechipoddhi tempare..\nControl thappindante maata vinadhe tempare..\nOlammi ammi ammi aami thumi temper choosthaavaa..\n\nSab ko pataale.. Sab ko bachaale.. Naach naach naach naach..\nSab ko pataale.. Sab ko bachaale.. Naach naach naach naach..\n\nNe thaatha temper.. Ne ayya temper..\nBaabaai temper.. Nuvvinkaa temper!\n\nThaaki choosthoo unte kandal.. Andaala paapikondal..\nAre winter lonu vedekkistaaye..\nAttaa manduthunte endal.. Ompullo neella kundal..\nGonthunde daaham puttistthunnaaye hey..\n\nNee maatal temper.. Choopulu temper..\nChethalu temper.. Oy orabba..\nNeeche temper.. Uper temper..\nTotal temper.. Oy..\nTemperature ne penchesinaave..\n\nSab ko pataale.. Sab ko bachaale.. Naach naach naach naach..\nSab ko pataale.. Sab ko bachaale.. Naach naach naach naach..\n\nAagalenu gantal.. Paruvaala paadipantal..\nNikhaaranga neeke icchesukuntale..\nAttaa reputhunte mantal.. Ekkuddhe naaku mental..\nNuvvivvakapothe laagesukuntale..\n\nNee intaa temper.. Baita temper..\nAnthaa temper.. Oy orabba..\nAage temper.. Peeche temper..\nPooraa temper.. Oy..\nTempt chesthoo unte aagedhelaage..\n\nSab ko pataale.. Sab ko bachaale.. Naach naach naach naach..\nSab ko pataale.. Sab ko bachaale.. Naach naach naach naach..\n\nNe thaatha temper.. Ne ayya temper..\nBaabaai temper.. Nuvvinkaa temper!",
+    "meaning": "The high-voltage title anthem celebrating raw power, swagger, fearless attitude, and unapologetic anger of the cop protagonist Daya.",
+    "tags": [
+      "Temper Title Song",
+      "Temper Songs",
+      "Jr NTR",
+      "Anup Rubens",
+      "Bhaskarabhatla",
+      "Roll Rida",
+      "Uma Neha",
+      "Mass Song"
+    ],
+    "views": 0,
+    "featured": true,
+    "status": "published",
+    "createdAt": "2026-10-26T09:20:33.593Z",
+    "updatedAt": "2026-10-26T09:20:33.593Z"
   },
   {
-    id: "4",
-    slug: "naatu-naatu-rrr",
-    title: "Naatu Naatu",
-    movie: "RRR",
-    singers: "Rahul Sipligunj, Kaala Bhairava",
-    lyricist: "Chandrabose",
-    musicDirector: "M. M. Keeravani",
-    cast: "NTR Jr, Ram Charan",
-    year: 2022,
-    language: "Telugu",
-    posterUrl: "https://images.unsplash.com/photo-1465847899084-d164df4dedc6?w=800&auto=format&fit=crop&q=80",
-    youtubeUrl: "https://www.youtube.com/watch?v=OsU0CGZoV8E",
-    meaning: "Academy Award-winning high-energy folk anthem celebrating raw earthy desi dancing spirit, defying colonial oppression with unstoppable rhythm.",
-    featured: true,
-    views: 0,
-    status: "published",
-    createdAt: "2024-02-10T14:00:00Z",
-    tags: ["Oscar Winner", "MM Keeravani", "RRR", "NTR", "Ram Charan", "Energy", "Naatu Naatu Lyrics"],
-    lyrics: `పొలంగట్టు దుమ్ములాన
-పోతరాజు దుమ్ములాన
-కాళ్ళజొల్లు తన్నినట్టు
-నరం నరం రేగినట్టు
-
-నాటు నాటు నాటు నాటు
-నాటు నాటు వీర నాటు
-నాటు నాటు నాటు నాటు
-పచ్చి మిరప నాటు!
-
-గుండెలదిరిపోయేలా
-తాళం తూలిపోయేలా
-కాలు దువ్వి కుమ్మేసేలా
-నాటు పాట పాడరో!
-
---- English Script (Transliteration) ---
-Polangattu dummulaana
-Potharaaju dummulaana
-Kaallajollu thanninattu
-Naram naram reginattu
-
-Naatu naatu naatu naatu
-Naatu naatu veera naatu
-Naatu naatu naatu naatu
-Pachi mirapa naatu!`
+    "id": "temper-04-devudaa",
+    "slug": "devudaa-temper",
+    "title": "Devudaa",
+    "movie": "Temper",
+    "singers": "Puri Jagannadh, Anup Rubens",
+    "lyricist": "Bhaskarabhatla",
+    "musicDirector": "Anup Rubens",
+    "cast": "Jr NTR, Kajal Aggarwal",
+    "year": 2015,
+    "language": "Telugu",
+    "posterUrl": "https://raghavmv.wordpress.com/wp-content/uploads/2015/02/temper-movie-poster_142181589800.jpg",
+    "youtubeUrl": "https://www.youtube.com/watch?v=yWWQ49XEyyM",
+    "lyrics": "దేవుడా దేవుడా దేవుడా దేవుడా...\nదేవుడా దేవుడా దేవుడా...\n\nహే భగవాన్ నే పనికిమాలిన ఎదవా\nహే భగవాన్ నే చెయ్యని తప్పు లేదే భగవాన్\nఓ చెయ్యి జారిపోయింది మంటగలిసిపోయింది ఈ నా జీవితం దేవుడా\nహో ఇంకోసారి ఇవ్వవా నా జీవితాన్ని నాకివ్వవా\nరిపేరు రిపేరు కర్ లూంగా...\nరిపేరు రిపేరు కర్ లూంగా...\n\nఓ దేవుడా ఓ దేవుడా దేవుడా...\nఓ దేవుడా ఓ దేవుడా...\n\nనే తప్పు చేస్తే తిట్టేటోడు బెల్టు పట్టి అడిగేటోడు\nముందు యెనక లేదే ఎవడు దేవుడా\nఏ దిక్కులేని వాళ్ళకి దేవుడా నువ్వు పెద్ద దిక్కు కదరా దేవుడా\nనే అడ్డదారి తొక్కుతుంటే పీకోదా నన్ను దేవుడా\nదేవుడా దేవుడా దేవుడా...\n\nరిపేరు రిపేరు కర్ లూంగా...\nరిపేరు రిపేరు కర్ లూంగా...\nఓహ్ దేవుడా ఓహ్ దేవుడా\n\nదేవ దేవ దేవా దేవా దేవ దేవ ఓహ్ దేవుడా ఓ దేవ దేవ...\n\nఒక్క తప్పు జరిగితే ఏమవుతాదో ఎన్ని బతుకులు బుగ్గవుతాయో\nనీకు తప్ప ఇంకెవడికి తెలుసురా దేవుడా\nమేం దేవుళ్ళం కాదు కదా దేవుడా మేం బుర్ర తక్కువ వాళ్ళం దేవుడా\nనువ్వు చూసి కూడా ఆపకుంటే తిట్టొద్ద నిన్ను దేవుడా\nదేవుడా దేవుడా దేవుడా దేవుడా\n\nరిపేరు రిపేరు కర్ లూంగా...\nరిపేరు రిపేరు కర్ లూంగా...\nఓహ్ దేవుడా ఓహ్ దేవుడా\nఓహ్ దేవుడా ఓహ్ దేవుడా",
+    "englishLyrics": "Devudaa devudaa devudaa devudaa...\nDevudaa devudaa devudaa...\n\nHey bhagawaan ne panikimaalina yedavaa\nHey bhagawaan ne cheyyani thappu lede bhagawaan\nO cheyyi jaaripoyindi mantagalisipoyindi ee naa jeevitham devudaa\nHo inkosaari ivvavaa naa jeevithaanni naakivvavaa\nRepair repair kar loonga...\nRepair repair kar loonga...\n\nO devudaa o devudaa devudaa...\nO devudaa o devudaa...\n\nNe thappu chesthe thittetodu belt-u patti adigetodu\nMundu yenaka lede evadu devudaa\nE dikkuleeni vaallaki devudaa nuvvu pedda dikku kadaraa devudaa\nNe addadaari thokkutunte peekodaa nannu devudaa\nDevudaa devudaa devudaa...\n\nRepair repair kar loonga...\nRepair repair kar loonga...\nOh devudaa oh devudaa\n\nDeva deva devaa devaa deva deva oh devudaa o deva deva...\n\nOkka thappu jarigithe emauthaado enni bathukulu buggavuthaayo\nNeeku thappa inkevadiki thelusuraa devudaa\nMem devullam kaadu kadaa devudaa mem burra thakkuva vaallam devudaa\nNuvvu choosi koodaa aapakunte thittoddhaa ninnu devudaa\nDevudaa devudaa devudaa devudaa\n\nRepair repair kar loonga...\nRepair repair kar loonga...\nOh devudaa oh devudaa\nOh devudaa oh devudaa",
+    "meaning": "A poignant, philosophical dialogue with God sung uniquely by director Puri Jagannadh, where a flawed man laments his past sins and pleads for one chance to repair his life.",
+    "tags": [
+      "Devudaa Song Lyrics",
+      "Temper Songs",
+      "Puri Jagannadh",
+      "Anup Rubens",
+      "Bhaskarabhatla",
+      "Jr NTR",
+      "Telugu Song Lyrics",
+      "Emotional"
+    ],
+    "views": 0,
+    "featured": true,
+    "status": "published",
+    "createdAt": "2026-10-26T09:20:33.593Z",
+    "updatedAt": "2026-10-26T09:20:33.593Z"
   },
   {
-    id: "5",
-    slug: "chuttamalle-devara",
-    title: "Chuttamalle",
-    movie: "Devara: Part 1",
-    singers: "Shilpa Rao",
-    lyricist: "Ramajogayya Sastry",
-    musicDirector: "Anirudh Ravichander",
-    cast: "NTR Jr, Janhvi Kapoor",
-    year: 2024,
-    language: "Telugu",
-    posterUrl: "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&auto=format&fit=crop&q=80",
-    youtubeUrl: "https://www.youtube.com/watch?v=4y-57Zg3foc",
-    meaning: "A sultry coastal melody celebrating intimate romance along the sea shores with hypnotic vocals by Shilpa Rao.",
-    featured: true,
-    views: 0,
-    status: "published",
-    createdAt: "2024-08-15T10:00:00Z",
-    tags: ["Anirudh", "Shilpa Rao", "Janhvi Kapoor", "NTR", "Latest", "Romantic", "Chuttamalle Lyrics"],
-    lyrics: `చుట్టమల్లే చూసిపోకే
-గుండెల్లోనే దాచుకోవే
-అలలాగ వచ్చి నువ్వు
-నన్నే తాకి పోకే
-
-గాలిలోనే నీ పరిమళం
-చేరదీసె నీ ప్రణయం
-మాయజేసి వెళ్ళిపోకే
-తోడై నాతో ఉండిపోవే!
-
-చుట్టమల్లే చూసిపోకే
-గుండెల్లోనే దాచుకోవే
-కలలలోన నీ రూపమే
-కనుల ఎదుట నిలిచిపోవే!
-
---- English Script (Transliteration) ---
-Chuttamalle choosipoke
-Gundellone daachukove
-Alalaaga vachi nuvvu
-Nanne thaaki poke
-
-Gaalilone nee parimalam
-Cheradeese nee pranayam
-Maayajesi vellipoke
-Thodai naatho undipove!`
+    "id": "temper-05-ittage-recchipodham",
+    "slug": "ittage-recchipodham-temper",
+    "title": "Ittage Recchipodham",
+    "movie": "Temper",
+    "singers": "Geetha Madhuri, Dhanunjay, Anudeep Dev, Arun",
+    "lyricist": "Bhaskarabhatla",
+    "musicDirector": "Anup Rubens",
+    "cast": "Jr NTR, Nora Fatehi, Kajal Aggarwal",
+    "year": 2015,
+    "language": "Telugu",
+    "posterUrl": "https://raghavmv.wordpress.com/wp-content/uploads/2015/02/temper-movie-poster_142181589800.jpg",
+    "youtubeUrl": "https://www.youtube.com/watch?v=kqDGjOs0ajk",
+    "lyrics": "Boys this is an item song!\n\nనేల బెంచ్ మాస్ కి బాల్కనీ లో క్లాస్ కి \nఐటెం సాంగ్ ఏ వచ్చిందంటే డాన్స్ డాన్స్ డాన్స్ డాన్స్\nహీరో గారి పక్కన ఆడే ఐటెం పాప కి \nచెప్పాలంటే చానా మందే ఫాన్స్ ఫాన్స్ ఫాన్స్ ఫాన్స్\nఅరెయ్ సిటీలు కొడతారే గాల్లో పేపర్లు జల్లుతారే \nపూనకాలు వచ్చినట్టు పోరా గాళ్ళు ఊగిపోరా ఐటెం సాంగ్ అంటే!\n\nహొయ్ ఇట్టాగే రెచ్చిపోదాం పిల్ల ఇట్టాగే రెచ్చిపోదాం \nఇట్టాగే రెచ్చిపోదాం పిల్ల రోజంతా రెచ్చిపోదాం\n\nఆ చుమ్మా చుమ్మా అరేయ్ చుమ్మా \nహో చుమ్మా చుమ్మా లేలే చుమ్మా \nహో తమ తమ తమ తంతం తన \nహో ఆ లింగ లింగ లింగ్ ఆ లింగ లింగ లింగ్\n\nయా ఇప్పటికింకా అంటే అరెయ్ గుటకలు మింగేస్తారే \nలే లే రాజా అంటే లుంగీలే ఎగ్గెడతారే \nరింగ రింగ అంటే హాల్ అందుర్సే \nపూవై పూవై ఫుల్ విసిల్స్య్ ఏ\nఒంపు సొంపు లేని బొమ్మ నీరు లేని చేప లెక్క గిల గిల కొట్టుకుంటాదే\nఅరెయ్ ఇట్టాగే అరేయ్ ఇట్టాగే \nహాయ్ ఇట్టాగే రెచ్చిపోనా హోయ్...\n\nఇట్టాగే రెచ్చిపోదాం పిల్ల ఇట్టాగే రెచ్చిపోదాం \nఇట్టాగే రెచ్చిపోదాం పిల్ల రోజంతా రెచ్చిపోదాం\n\nయా జయమాలిని జ్యోతిలక్ష్మి అనురాధ డిస్కో శాంతి \nసిల్క్ ముమైత్ ఖాన్ సరి కొత్తగా సన్నీ లియోన్ \nపొట్టి పొట్టి బట్టలే కట్టుకొస్తే \nకత్తి లాంటి ఫిగర్ స్టెప్ వేస్తే \nకుర్రకారు గుండె జల్లు ఆల్ షోస్ హౌస్ ఫుల్ \nజంక్షన్ లో పెద్ద జాతరే!\n\nఅరెయ్ ఇట్టాగే అరేయ్ ఇట్టాగే \nహాయ్ ఇట్టాగే రెచ్చిపోనా హోయ్...\nఇట్టాగే రెచ్చిపోదాం పిల్ల ఇట్టాగే రెచ్చిపోదాం \nఇట్టాగే రెచ్చిపోదాం పిల్ల రోజంతా రెచ్చిపోదాం",
+    "englishLyrics": "Boys this is an item song!\n\nNela bench mass ki balcony lo class ki \nItem song-e vacchindante dance dance dance dance\nHero gaari pakkana aade item paapa ki \nCheppaalante chaanaa mandhe fans fans fans fans\nArey seeteelu kodathaare gaallo paper-lu jalluthaare \nPoonakaalu vacchinattu poragaallu oogiporaa item song ante!\n\nHoy ittaage recchipodhaam pilla ittaage recchipodhaam \nIttaage recchipodhaam pilla rojanthaa recchipodhaam\n\nAa chumma chumma arey chumma \nHo chumma chumma lele chumma \nHo thama thama thama thamtham thana \nHo aa linga linga ling aa linga linga ling\n\nYaa ippatikinkaa ante arey gutakalu mingesthaare \nLe le raajaa ante lungilee eggedathaare \nRinga ringa ante hall andurse \nPoovai poovai full whistles-e\nOmpu sompu leni bomma neeru leni chepa lekka gila gila kottukuntaadhe\nArey ittaage arey ittaage \nHaai ittaage recchiponaa hoy...\n\nIttaage recchipodhaam pilla ittaage recchipodhaam \nIttaage recchipodhaam pilla rojanthaa recchipodhaam\n\nYaa Jayamalini Jyothilakshmi Anuradha Disco Shanti \nSilk Mumaith Khan sari kothagaa Sunny Leone \nPotti potti battale kattukosthe \nKatthi laanti figure step vesthe \nKurrakaaru gunde jallu all shows house full \nJunction lo pedda jaathare!\n\nArey ittaage arey ittaage \nHaai ittaage recchiponaa hoy...\nIttaage recchipodhaam pilla ittaage recchipodhaam \nIttaage recchipodhaam pilla rojanthaa recchipodhaam",
+    "meaning": "A blockbuster mass item dance number featuring Nora Fatehi and Jr NTR celebrating the unmatched craze, whistle-blowing and paper-tossing energy of theatrical mass songs in Telugu cinema.",
+    "tags": [
+      "Ittage Recchipodham Lyrics",
+      "Temper Songs",
+      "Geetha Madhuri",
+      "Dhanunjay",
+      "Jr NTR",
+      "Nora Fatehi",
+      "Anup Rubens"
+    ],
+    "views": 0,
+    "featured": true,
+    "status": "published",
+    "createdAt": "2026-10-26T09:20:33.593Z",
+    "updatedAt": "2026-10-26T09:20:33.593Z"
+  },
+  {
+    "id": "avpl-01-samajavaragamana",
+    "slug": "samajavaragamana-ala-vaikunthapurramuloo",
+    "title": "Samajavaragamana",
+    "movie": "Ala Vaikunthapurramuloo",
+    "singers": "Sid Sriram",
+    "lyricist": "Sirivennela Seetharama Sastry",
+    "musicDirector": "Thaman S",
+    "cast": "Allu Arjun, Pooja Hegde",
+    "year": 2020,
+    "language": "Telugu",
+    "posterUrl": "https://upload.wikimedia.org/wikipedia/en/2/28/Ala_Vaikunthapurramuloo.jpeg",
+    "youtubeUrl": "https://www.youtube.com/watch?v=ZUXPP3Z_iTA",
+    "lyrics": "నీ కాళ్ళని పట్టుకు వదలనన్నవి చూడే నా కళ్ళు\nఆ చూపులనల్లా తొక్కుకు వెళ్ళకు దయలేదా అసలు\nనీ కాళ్ళని పట్టుకు వదలనన్నవి చూడే నా కళ్ళు\nఆ చూపులనల్లా తొక్కుకు వెళ్ళకు దయలేదా అసలు\n\nనీ కళ్ళకి కావలి కాస్తాయే కాటుకలా నా కలలు\nనువ్వు నులుముతుంటే ఎర్రగ కంది చిందేనే సెగలు\nనా ఊపిరి గాలికి ఉయ్యాలలూగుతూ ఉంటే ముంగురులు\nనువ్వు నెట్టేస్తే ఎలా నిట్టూర్చవటే నిష్టూరపు విలవిలలు\n\nసామజవరగమనా.. నిను చూసి ఆగగలనా\nమనసు మీద వయసుకున్న అదుపు చెప్పతగునా\nసామజవరగమనా.. నిను చూసి ఆగగలనా\nమనసు మీద వయసుకున్న అదుపు చెప్పతగునా\n\nనీ కాళ్ళని పట్టుకు వదలనన్నవి చూడే నా కళ్ళు\nఆ చూపులనల్లా తొక్కుకు వెళ్ళకు దయలేదా అసలు\n\nమల్లెల మాసమా.. మంజుల హాసమా\nప్రతి మలుపులోన ఎదురుపడిన వన్నెల వనమా\nవిరిసిన పించమా.. విరుల ప్రపంచమా\nఎన్నెన్ని వన్నెచిన్నెలంటే ఎన్నగ వశమా\n\nఅరె నా గాలే తగిలినా నా నీడే తరిమినా\nఉలకవా పలకవా భామా..\nఎంతో బతిమాలినా ఇంతేనా అంగనా\nమదిని మీటు మధురమైన మనవిని వినుమా\n\nసామజవరగమనా.. నిను చూసి ఆగగలనా\nమనసు మీద వయసుకున్న అదుపు చెప్పతగునా\nసామజవరగమనా.. నిను చూసి ఆగగలనా\nమనసు మీద వయసుకున్న అదుపు చెప్పతగునా\n\nనీ కాళ్ళని పట్టుకు వదలనన్నవి చూడే నా కళ్ళు\nఆ చూపులనల్లా తొక్కుకు వెళ్ళకు దయలేదా అసలు",
+    "englishLyrics": "Nee kaallani pattuku vadalanannavi choode naa kallu\nAa choopulanallaa thokkuku vellaku dayaledhaa asalu\nNee kaallani pattuku vadalanannavi choode naa kallu\nAa choopulanallaa thokkuku vellaku dayaledhaa asalu\n\nNee kallaki kaavali kaasthaaye kaatukalaa naa kalalu\nNuvvu nulumuthunte erraga kandi chindhene segalu\nNaa oopiri gaaliki uyyaalaluguthoo unte mungurulu\nNuvvu netthesthe elaa nittoorchavate nishtoorapu vilavilalu\n\nSamajavaragamana.. Ninu choosi aagagalanaa\nManasu meedha vayasukunna adupu cheppathagunaa\nSamajavaragamana.. Ninu choosi aagagalanaa\nManasu meedha vayasukunna adupu cheppathagunaa\n\nNee kaallani pattuku vadalanannavi choode naa kallu\nAa choopulanallaa thokkuku vellaku dayaledhaa asalu\n\nMallela maasamaa.. Manjula haasamaa\nPrathi malupulona edhurupadina vannela vanamaa\nVirisina pinchamaa.. Virula prapanchamaa\nEnnenni vannechinnelante ennaga vasamaa\n\nAre naa gaale thagilinaa naa neede thariminaa\nUlakavaa palakavaa bhaamaa..\nEntho bathimaalinaa inthenaa anganaa\nMadhini meetu madhuramaina manavini vinumaa\n\nSamajavaragamana.. Ninu choosi aagagalanaa\nManasu meedha vayasukunna adupu cheppathagunaa\nSamajavaragamana.. Ninu choosi aagagalanaa\nManasu meedha vayasukunna adupu cheppathagunaa\n\nNee kaallani pattuku vadalanannavi choode naa kallu\nAa choopulanallaa thokkuku vellaku dayaledhaa asalu",
+    "meaning": "Samajavaragamana is Sirivennela Seetharama Sastry legendary romantic composition celebrating the divine grace, ethereal beauty, and mesmerizing footsteps of a woman, sung soulfully by Sid Sriram.",
+    "tags": [
+      "Samajavaragamana Lyrics",
+      "Ala Vaikunthapurramuloo Songs",
+      "Sid Sriram",
+      "Thaman S",
+      "Allu Arjun",
+      "Pooja Hegde",
+      "Sirivennela",
+      "Telugu Melody"
+    ],
+    "views": 0,
+    "featured": true,
+    "status": "published",
+    "createdAt": "2026-10-26T09:20:33.593Z",
+    "updatedAt": "2026-10-26T09:20:33.593Z"
+  },
+  {
+    "id": "avpl-02-butta-bomma",
+    "slug": "butta-bomma-ala-vaikunthapurramuloo",
+    "title": "Butta Bomma",
+    "movie": "Ala Vaikunthapurramuloo",
+    "singers": "Armaan Malik",
+    "lyricist": "Ramajogayya Sastry",
+    "musicDirector": "Thaman S",
+    "cast": "Allu Arjun, Pooja Hegde",
+    "year": 2020,
+    "language": "Telugu",
+    "posterUrl": "https://upload.wikimedia.org/wikipedia/en/2/28/Ala_Vaikunthapurramuloo.jpeg",
+    "youtubeUrl": "https://www.youtube.com/watch?v=rOirJKJoE0o",
+    "lyrics": "ఇంతకన్నా మంచి పోలికేది నాకు తట్టలేదు గాని అమ్ము\nఈ లవ్ అనేది బబుల్-ఉ గమ్-మ్మో అంటుకున్నదంటే పోదు నమ్మో\nముందు నుంచి అందరన్న మాటే గాని మళ్ళీ అంటన్నానే అమ్ము\nఇది చెప్పకుండా వచ్చే తుమ్మో ప్రేమనాపలేవు నన్ను నమ్మో\n\nఎట్టాగ నాయీ ఎదురు చూపుకి తగినట్టుగా నువ్వు బదులు చెబితివే\nఅరేయ్ దేవుడా ఇదేందనెలెంత లోపటె పిల్లడాట దెగ్గరయి నిన్ను చేరదీస్తివే\n\nబుట్టబొమ్మ బుట్టబొమ్మ నన్ను సుట్టుకుంటివే \nజిందగీకే అట్టబొమ్మై జంట కట్టుకుంటివే\nబుట్టబొమ్మ బుట్టబొమ్మ నన్ను సుట్టుకుంటివే \nజిందగీకే అట్టబొమ్మై జంట కట్టుకుంటివే\n\nమల్టీప్లెక్స్ లోని ఆడియన్స్ లాగ మౌనంగున్న గాని అమ్ము\nలోన దండనక జరిగిందే నమ్మో దిమ్మ దిరిగినదే మైండ్ సిమ్-మ్మో\nరాజుల కాలం కాదు రథము గుర్రం లేవూ\nఅద్దం ముందర నాతో నేనే యుద్ధం చేస్తానంటే\nగాజుల చేతులు జాపి దెగ్గరకొచ్చింది నువ్వు\nచెంపల్లో చిటికేసి చక్కరవద్ధిని చేసావే\n\nచిన్నగా చినుకు తుంపరడిగితేయ్ కుండపోతగా తుఫాను తెస్తివే\nమాటగా ఓ మల్లెపువ్వునడిగితేయ్ మూటగా పూల తోటగా పైనొచ్చి పడితివే\n\nబుట్టబొమ్మ బుట్టబొమ్మ నన్ను సుట్టుకుంటివే \nజిందగీకే అట్టబొమ్మై జంట కట్టుకుంటివే\nవేలి నిండా నన్ను తీసి బొట్టు పెట్టుకుంటివే \nకాళ్ళ కిందికి పువ్వు నేను నెత్తినెట్టుకుంటివే!",
+    "englishLyrics": "Inthakanna manchi polikedi naaku thattaleedu gaani Ammu\nEe love anedhi bubble-u gum-mmo antukunnadhante podhu nammo\nMundhu nunchi andharanna maate gaani malli antannaane Ammu\nIdi cheppakundaa vacche thummo premanaapalevu nannu nammo\n\nEtthaaga naayee edhuru choopuki thaginattugaa nuvvu badhulu chebithive\nArey devudaa idhendhanelentha lopate pilladaata deggharayi ninnu cheradheesthive\n\nButta bomma butta bomma nannu suttukuntive\nZindagi key atta bommai janta kattukuntive\nButta bomma butta bomma nannu suttukuntive\nZindagi key atta bommai janta kattukuntive\n\nMultiplex loni audience laaga maunamgunna gaani Ammu\nLona dandanaka jarigindhe nammo dimma thiriginadhe mind sim-mmo\nRaajula kaalam kaadu rathamu gurram levu\nAddham mundhara naatho nene yuddham chesthaanante\nGaajula chethulu jaapi deggharakocchindhi nuvvu\nChempallo chitikesi chakkaravaddhini chesaave\n\nChinnagaa chinuku thumparadigithey kundapothagaa thuphaanu thesthive\nMaatagaa o mallepuwunadigithey mootagaa poola thotagaa painocchi padithive\n\nButta bomma butta bomma nannu suttukuntive\nZindagi key atta bommai janta kattukuntive\nVeli nindaa nannu theesi bottu pettukuntive\nKaalla kindhiki puvvu nenu netthinettukuntive!",
+    "meaning": "An infectious, worldwide viral romantic dance track written by Ramajogayya Sastry comparing modern love to bubblegum and celebrating the beloved lady as an adored festival doll.",
+    "tags": [
+      "Butta Bomma Lyrics",
+      "Ala Vaikunthapurramuloo",
+      "Armaan Malik",
+      "Allu Arjun",
+      "Pooja Hegde",
+      "Thaman S",
+      "Ramajogayya Sastry",
+      "Viral Song"
+    ],
+    "views": 0,
+    "featured": true,
+    "status": "published",
+    "createdAt": "2026-10-26T09:20:33.593Z",
+    "updatedAt": "2026-10-26T09:20:33.593Z"
+  },
+  {
+    "id": "avpl-03-ramuloo-ramulaa",
+    "slug": "ramuloo-ramulaa-ala-vaikunthapurramuloo",
+    "title": "Ramuloo Ramulaa",
+    "movie": "Ala Vaikunthapurramuloo",
+    "singers": "Anurag Kulkarni, Mangli",
+    "lyricist": "Kasarla Shyam",
+    "musicDirector": "Thaman S",
+    "cast": "Allu Arjun, Pooja Hegde",
+    "year": 2020,
+    "language": "Telugu",
+    "posterUrl": "https://upload.wikimedia.org/wikipedia/en/2/28/Ala_Vaikunthapurramuloo.jpeg",
+    "youtubeUrl": "https://www.youtube.com/watch?v=3oMZeuGz7og",
+    "lyrics": "హేయ్ బ్రదర్ ఆపమ్మా.. ఈ డిక్‌ చిక్‌ డిక్‌ చిక్‌ కాకుండా మన మ్యూజిక్‌ ఏమైనా ఉందా..!\nఅబ్బా.. కడుపు నిండిపోయింది బంగారం..!\n\nబంటు గానికి ట్వంటీ టూ.. బస్తీల మస్తు కట్-ఔటూ\nబచ్చగాండ్ల బ్యాచ్ ఉండేది వొచ్చినమంటే సూట్టు\nకిక్కే సాలక ఓ నైట్ ఉ ఎక్కి దోక్కు బుల్లెట్టు\nసందు సందుల మందు కోసం ఎత్తుకుతాంటే రూటూ\n\nసిల్కు శీర కట్టుకొని చిల్డ్ బీరు మెరిసినట్టు\nపొట్లం కట్టిన బిర్యానీకి బొట్టు బిళ్ళ వెట్టినట్టు\nబంగ్లా మీద నిలుసోనున్దిరో ఓ సందమామ \nసుక్క దాగాక షక్కరొచెరో ఎం అందం మామ \nజింక లెక్క దూకుతుంటేరో ఆ సందమావ \nజుంకీ జారీ చిక్కుకుందిరో నా దిలుకు మావ\n\nరాములో రాములా నన్ను ఆగం చేసిందిరో\nరాములో రాములా నా పాణం తీసిందిరో\nరాములో రాములా నన్ను ఆగం చేసిందిరో\nరాములో రాములా నా పాణం తీసిందిరో!\n\nఏయ్ తమ్మలపాకె ఎస్తుంటే కమ్మగా వాసన వొస్తావే\nఎర్రగా పండిన బుగ్గలు రెండు యాదియికొస్తాయే\nఅరేయ్ పువ్వుల అంగీ ఎస్తుంటే గుండీ నువ్వై పూస్తావే\nపండూకున్న గుండెల దూరి లొల్లే చేస్తావే\n\nఅరేయ్ ఇంటి ముందు లైటు మిళుకు మిళుకు మంటుంటే\nనువ్వు కన్ను కొట్టినట్టు సిగ్గు పుట్టిందే\nసీరకొంగు తలుపు సాటు సిక్కుకుంటే\nఏహేయ్ నువ్వు లాగినట్టు వొళ్ళు జల్లుమంటాందే\n\nనాగస్వరం ఊదుతుంటే నాగుపాము ఊగినట్టు\nఏంటబడి వస్తున్న నీ పట్టగొలుసు సప్పూడింటు\nపట్టనట్టే తిరుగుతున్నవే.. \nఓ సందామావ పక్కకు పోయి తొంగిజూస్తవె ఎం టెక్కురా మావ!\n\nరాములో రాములా నన్ను ఆగం చేసిందిరో\nరాములో రాములా నా పాణం తీసిందిరో!",
+    "englishLyrics": "Hey brother aapammaa.. Ee dik-chik dik-chik kaakundaa mana music emainaa undhaa..!\nAbbaa.. Kadupu nindipoyindi bangaaram..!\n\nBantu gaaniki twenty two.. Basteela masthu cut-out-u\nBacchagaandla batch undedhi vocchinamante soottu\nKikke saalaka o night-u ekki dhokku bullet-u\nSandhu sandhula mandhu kosam ethukuthaante root-u\n\nSilku sheera kattukoni chilled beer-u merisinattu\nPotlam kattina biryani ki bottu billa vettinattu\nBangla meedha nilusonundhiro o sandhamaama\nSukka dhaagaka shakkarocchero em andham maama\nJinka lekka dookuthuntero aa sandhamaava\nJumkee jaaree chikkukundhiro naa diluku maava\n\nRamuloo ramulaa nannu aagam chesindhiro\nRamuloo ramulaa naa paanam theesindhiro\nRamuloo ramulaa nannu aagam chesindhiro\nRamuloo ramulaa naa paanam theesindhiro!\n\nEy thammalapaake esthunte kammagaa vaasana vosthaave\nErragaa pandina buggalu rendu yaadhiyikosthaaye\nArey puvvula angee esthunte gundee nuwvai poosthaave\nPandukunna gundela dhoori lolle chesthaave\n\nArey inti mundhu light-u miluku miluku mantunte\nNuvvu kannu kottinattu siggu puttindhe\nSeerakongu thalupu saatu sikkukunte\nEhēy nuvvu laaginattu vollu jallumantaandhe\n\nNaagaswaram oodhuthunte naagupaamu ooginattu\nEntabadi vasthunna nee pattagolusu sappoodintu\nPattanatte thiruguthunnave..\nO sandhaamaava pakkaku poyi thongijoosthave em tekkuraa maava!\n\nRamuloo ramulaa nannu aagam chesindhiro\nRamuloo ramulaa naa paanam theesindhiro!",
+    "meaning": "A high-octane folk-fusion mass party anthem depicting a local youth smitten by a neighborhood beauty that drives his senses wild, sung energetically by Anurag Kulkarni and Mangli.",
+    "tags": [
+      "Ramuloo Ramulaa Lyrics",
+      "Ala Vaikunthapurramuloo",
+      "Mangli",
+      "Anurag Kulkarni",
+      "Allu Arjun",
+      "Thaman S",
+      "Kasarla Shyam"
+    ],
+    "views": 0,
+    "featured": true,
+    "status": "published",
+    "createdAt": "2026-10-26T09:20:33.593Z",
+    "updatedAt": "2026-10-26T09:20:33.593Z"
+  },
+  {
+    "id": "avpl-04-omg-daddy",
+    "slug": "omg-daddy-ala-vaikunthapurramuloo",
+    "title": "OMG Daddy",
+    "movie": "Ala Vaikunthapurramuloo",
+    "singers": "Rahul Sipligunj, Roll Rida, Rahul Nambiar, Lady Kash, Blaaze",
+    "lyricist": "Krishna Chaitanya",
+    "musicDirector": "Thaman S",
+    "cast": "Allu Arjun, Murali Sharma, Pooja Hegde",
+    "year": 2020,
+    "language": "Telugu",
+    "posterUrl": "https://upload.wikimedia.org/wikipedia/en/2/28/Ala_Vaikunthapurramuloo.jpeg",
+    "youtubeUrl": "https://www.youtube.com/watch?v=gdt-yIgm2zc",
+    "lyrics": "ల ల ల లా ల ల ల ల ల లా \nల ల ల ల లా ల ల ల ల ల\n\nనా స్టోరీ చెప్పలేను నా బాధకంతు లేదు \nఈ డాడీ లందురు ఎందుకిత్త పీక్కుతింటున్నారు \nమాట వినిపించుకోరు అస్సలు అర్థం చేసుకోరు \nఆలోచిస్తేనే నాన్న పేరు రాలుతుంది నా హెయిర్ -ఉ\n\nవందరూపాయలివ్వమంటే మనమేమన్న రిచ్ ఆహ్ \nఅని క్లాస్ పీకుతుంటే ఏమైనా పిచ్చా అనుకుంటూ \nఏడ్చుకుంటూ నేను బైటికొచ్చా \nఅందరింట సేమ్ సీన్ ఏమంటావ్ చిచ్చా\n\nOh My GOD Daddy Just Stop Being My Baddy\nOh My GOD Daddy Just Stop Being My Baddy\nOh My GOD Daddy Just Stop Being My Baddy\nDon't Be So Hardy That Will Make Me Saddy\n\nమేర నామ్ బంటు కానీ పేరుకి కొట్టారు ఇటు\nచార్ సౌ బేస్ డాడీ తోనే చేశా నీ ఫైట్ డే అండ్ నైట్ -ఉ\nఓహ్ ఓహ్ ఓహ్ అమ్మకి మొగుడు \nఓహ్ ఓహ్ ఓహ్ నాన్నయినాడు\n\nవర్షాన్ని ఓ చిట్టి బాటిల్ లో నింపలేవు \nసంతోషాన్ని కుట్టి నువ్వు యూనిఫామ్ వెయ్యలేవు \nస్వేచ్ఛకేమి షార్ట్కట్ కనిపెట్టలేదు ఒట్టు \nకాదంటే నన్ను తిట్టు లేదా నా జట్టు కట్టు\n\nఅడివేమో బాక్యార్డ్ లో పెట్టలేవు మచ్చ \nపావురాన్ని పేపర్ వెయిట్ చెయ్యలేవు పిచ్చ \nవాల్కెనోతో చలి మంటే వెయ్యలేవు చిచ్చ \nబ్లాంక్ ఛెక్కే రా మనం చెప్పి మరి వచ్చా\n\nHe Isn't Always Right! Spy Daddy Spy Daddy\nHe Isn't Always Right! Spy Daddy Spy Daddy\n\nసన్ ఆఫ్ వాల్మీకి అంటే కేర్ ఆఫ్ కష్టాలున్నట్టే \nఈ ఇంట్లో నవ్వాలంటే థానోస్ చిటికెయ్యాలంతే!\nఓహ్ ఓహ్ ఓహ్ మమ్మీ మొగుడు \nఓహ్ ఓహ్ ఓహ్ డమ్మీ గాడు\n\nOh My GOD Daddy Just Stop Being My Baddy\nOh My GOD Daddy Just Stop Being My Baddy\nOh My GOD Daddy Just Stop Being My Baddy\nDon't Be So Hardy That Will Make Me Saddy!",
+    "englishLyrics": "La la la laa la la la la la laa\nLa la la la laa la la la la la\n\nNaa story cheppalenu naa baadhakanthu ledu\nEe daddy landharu endhukittha peekkuthintunnaaru\nMaata vinpinchukoru assalu artham chesukoru\nAalochisthene naanna peru raaluthundi naa hair-u\n\nVanda roopaayalivvamante manamemanna rich aah\nAni class peekuthunte emainaa picchaa anukuntoo\nEdchukuntoo nenu baitikocchaa\nAndharinta same scene emantaav chicchaa\n\nOh My GOD Daddy Just Stop Being My Baddy\nOh My GOD Daddy Just Stop Being My Baddy\nOh My GOD Daddy Just Stop Being My Baddy\nDon't Be So Hardy That Will Make Me Saddy\n\nMera naam Bantu kaanee peruki kottaaru itu\nChaar sau bees daddy thone chesaa nee fight day and night-u\nOh oh oh ammaki mogudu\nOh oh oh naannayinaadu\n\nVarshaanni o chitti bottle lo nimpalevu\nSanthoshaanni kutti nuvvu uniform veyyalevu\nSwecchakkemi shortcut kanipettaledhu ottu\nKaadhante nannu thittu ledhaa naa jattu kattu\n\nAdivanemo backyard lo pettalevu maccha\nPaavuraanni paper weight cheyyalevu piccha\nVolcano tho chali mante veyyalevu chiccha\nBlank cheque-e raa manam cheppi mari vacchaa\n\nHe Isn't Always Right! Spy Daddy Spy Daddy\nHe Isn't Always Right! Spy Daddy Spy Daddy\n\nSon of Valmiki ante care of kashtaalunnatte\nEe intlo navvaalante Thanos chitikeyyaalanthe!\nOh oh oh mummy mogudu\nOh oh oh dummy gaadu\n\nOh My GOD Daddy Just Stop Being My Baddy\nOh My GOD Daddy Just Stop Being My Baddy\nOh My GOD Daddy Just Stop Being My Baddy\nDon't Be So Hardy That Will Make Me Saddy!",
+    "meaning": "A playful, modern rap-pop track highlighting generational banter and humorous grievances between an ambitious youth and his strict, conservative father.",
+    "tags": [
+      "OMG Daddy Lyrics",
+      "Ala Vaikunthapurramuloo",
+      "Rahul Sipligunj",
+      "Roll Rida",
+      "Allu Arjun",
+      "Thaman S"
+    ],
+    "views": 0,
+    "featured": false,
+    "status": "published",
+    "createdAt": "2026-10-26T09:20:33.593Z",
+    "updatedAt": "2026-10-26T09:20:33.593Z"
+  },
+  {
+    "id": "avpl-05-sittharala-sirapadu",
+    "slug": "sittharala-sirapadu-ala-vaikunthapurramuloo",
+    "title": "Sittharala Sirapadu",
+    "movie": "Ala Vaikunthapurramuloo",
+    "singers": "Sooranna, Saketh Komanduri",
+    "lyricist": "Vijay Kumar Bhalla",
+    "musicDirector": "Thaman S",
+    "cast": "Allu Arjun, Pooja Hegde",
+    "year": 2020,
+    "language": "Telugu",
+    "posterUrl": "https://upload.wikimedia.org/wikipedia/en/2/28/Ala_Vaikunthapurramuloo.jpeg",
+    "youtubeUrl": "https://www.youtube.com/watch?v=yWG5bYvKARE",
+    "lyrics": "సిత్తరాల సిరపడు.. సిత్తరాల సిరపడు\nఉత్తరాన ఊరి సివర.. సిత్తరాల సిరపడూ\nపట్టుపట్టినాడ ఒగ్గనే ఒగ్గడు..\nపెత్తనాలు నడిపేడు సిత్తరాల సిరపడు\nమంతనాలు చేసినాడు సిత్తరాల సిరపడు..\nఊరూరు ఒగ్గేసినా ఉడుం పట్టు ఒగ్గడు\n\nబుగతోటి ఆంబోతూ రంకేసి కుమ్మబోతే..\nకొమ్ములూడదీసి మరీ పీపాలూధినాడూరో..\nజడలిప్పి మర్రిచెట్టు దయ్యాల కొంపైతే..\nదయ్యముతో కయ్యానికి తొడకొట్టి దిగాడు.. ఆ.. ఆ..\n\nఅమ్మోరి జాతరలో ఒంటి తల రావణుడు..\nగుంటలెంట్ల పడితేను గుద్ది గుండ చేసినాడు\nపొన్నూరు వస్తాడు.. ధమ్లుంటే రమ్మంటూ..\nరొమ్ము మీదొక్కటిచ్చి కుమ్మి కుమ్మి పోయాడు.. ఆ.. ఆ..\n\nపదిమంది లాగలేని పదిమూరల సొరచేప..\nఒడుపుగా ఒంటిసెత్తో ఒడ్డుకట్టుకొచ్చినాడూ..\nసాముజేసే కండటోటి.. దేనికైనా గట్టిపోటీ..\nఅడుగడుగు వేసినాడ అద్రేను అవతలొడు!\n\nసిత్తరాల సిరపడు.. సిత్తరాల సిరపడు\nఉత్తరాన ఊరి సివర.. సిత్తరాల సిరపడూ\nగందుపిల్లి సూపులతో గుండెలోన గుచ్చాడు..\nసక్కనమ్మ వెనకబడ్డ పోకిరోళ్ల ఇరగదీసి..\nసక్కనమ్మ కళ్లల్లో ఏల ఏల సుక్కలొచ్చే!",
+    "englishLyrics": "Sittharala sirapadu.. Sittharala sirapadu\nUttharaana oori sivara.. Sittharala sirapadoo\nPattupattinaada oggane oggadu..\nPetthanaalu nadipedu sittharala sirapadu\nManthanaalu chesinaadu sittharala sirapadu..\nOorooru oggesinaa udum pattu oggadu\n\nBugathoti aambothoo rankesi kummabothe..\nKommooloodadeesi maree peepaloodhinaadooro..\nJadalippi marrichettu dayyaala kompaite..\nDayyamutho kayyaaniki thodakotti digaadu.. Aa.. aa..\n\nAmmori jaatharalo onti thala raavanudu..\nGuntalentla padithenu guddhi gunda chesinaadu\nPonnuru vasthaadu.. Dhamlunte rammantoo..\nRommu meedhokkaticchi kummi kummi poyaadu.. Aa.. aa..\n\nPadhimandi laagaleni padhimoorala sorachepa..\nOdupugaa ontisetho oddukattukocchinaadoo..\nSaamujese kandathoti.. Dhenikainaa gattipoti..\nAdugadugu vesinaada adrenu avathalodu!\n\nSittharala sirapadu.. Sittharala sirapadu\nUttharaana oori sivara.. Sittharala sirapadoo\nGandupilli soopulatho gundelona gucchaadu..\nSakkanamma venakabadda pokirolla iragadeesi..\nSakkanamma kallallo ela ela sukkalocche!",
+    "meaning": "A high-spirited North Andhra rustic folk ballad sung in Srikakulam dialect that celebrates the invincible heroism, unmatched physical strength, and unyielding will of the hero.",
+    "tags": [
+      "Sittharala Sirapadu Lyrics",
+      "Ala Vaikunthapurramuloo",
+      "Thaman S",
+      "Sooranna",
+      "Saketh",
+      "Allu Arjun",
+      "Folk Song"
+    ],
+    "views": 0,
+    "featured": true,
+    "status": "published",
+    "createdAt": "2026-10-26T09:20:33.593Z",
+    "updatedAt": "2026-10-26T09:20:33.593Z"
   }
 ];

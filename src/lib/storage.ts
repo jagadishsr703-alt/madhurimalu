@@ -105,15 +105,23 @@ export async function getAllSongs(): Promise<Song[]> {
         const localBySlug = new Map(localSongs.map((s) => [s.slug, s]));
         const songsToAutoSync: any[] = [];
 
-        // Identify local songs that are missing or truncated in Supabase
+        // 1. Identify local songs that are missing, outdated, or have incorrect lyrics in Supabase
         for (const local of localSongs) {
           const remote = data.find((d: any) => d.slug === local.slug);
-          if (!remote || (remote.lyrics?.length < local.lyrics.length) || !remote.englishLyrics) {
-            songsToAutoSync.push(local);
+          if (
+            !remote ||
+            remote.lyrics !== local.lyrics ||
+            !remote.englishLyrics ||
+            remote.englishLyrics !== local.englishLyrics
+          ) {
+            songsToAutoSync.push({
+              ...local,
+              views: remote?.views || 0,
+            });
           }
         }
 
-        // Auto-heal: automatically update Supabase with complete full lyrics in background!
+        // 2. Auto-heal: automatically update Supabase with complete full lyrics in background!
         if (songsToAutoSync.length > 0) {
           try {
             await supabase.from('songs').upsert(songsToAutoSync);
@@ -125,7 +133,7 @@ export async function getAllSongs(): Promise<Song[]> {
           }
         }
 
-        // Auto-purge any stale songs from other movies not in verified local database
+        // 3. Auto-purge any stale songs from other movies not in verified local database
         const staleSongs = data.filter((d: any) => !localBySlug.has(d.slug));
         if (staleSongs.length > 0) {
           try {
@@ -133,32 +141,16 @@ export async function getAllSongs(): Promise<Song[]> {
           } catch (e) {}
         }
 
-        // Merge complete, unabridged lyrics into data so the frontend ALWAYS gets 100% full lyrics
-        const mergedSongs: Song[] = data
-          .filter((d: any) => localBySlug.has(d.slug))
-          .map((remote: Song) => {
-            const local = localBySlug.get(remote.slug);
-            if (local) {
-              return {
-                ...remote,
-                lyrics: local.lyrics, // Always prioritize 100% full verified lyrics
-                englishLyrics: local.englishLyrics || remote.englishLyrics,
-                posterUrl: local.posterUrl || remote.posterUrl,
-                youtubeUrl: local.youtubeUrl || remote.youtubeUrl,
-                meaning: local.meaning || remote.meaning,
-                tags: local.tags || remote.tags,
-                views: remote.views || 0, // Genuine views only
-              };
-            }
-            return remote;
-          });
-
-        // Add any verified local songs not yet returned by remote
-        for (const local of localSongs) {
-          if (!mergedSongs.some((s) => s.slug === local.slug)) {
-            mergedSongs.push(local);
-          }
-        }
+        // 4. Return complete, unabridged verified songs decorated with genuine views from remote
+        const mergedSongs: Song[] = localSongs.map((local) => {
+          const remote = data.find((d: any) => d.slug === local.slug);
+          return {
+            ...local,
+            views: remote?.views || 0, // Genuine views only
+            createdAt: remote?.createdAt || local.createdAt,
+            updatedAt: new Date().toISOString(),
+          };
+        });
 
         saveLocalSongs(mergedSongs);
         return mergedSongs;
@@ -318,6 +310,17 @@ export async function syncLocalSongsToSupabase(): Promise<{ count: number; error
 
   try {
     const songs = getLocalSongs();
+
+    // Auto-purge any stale songs from Supabase that are not in our verified songs list
+    const { data: existingRemote } = await supabase.from('songs').select('id, slug');
+    if (existingRemote && Array.isArray(existingRemote)) {
+      const validSlugs = new Set(songs.map((s) => s.slug));
+      const toDelete = existingRemote.filter((r) => !validSlugs.has(r.slug));
+      if (toDelete.length > 0) {
+        await Promise.all(toDelete.map((r) => supabase!.from('songs').delete().eq('id', r.id)));
+      }
+    }
+
     let res = await withTimeout(supabase.from('songs').upsert(songs), 10000);
     let { error } = res as any;
     if (error && (error.message?.includes('englishLyrics') || error.details?.includes('englishLyrics'))) {
