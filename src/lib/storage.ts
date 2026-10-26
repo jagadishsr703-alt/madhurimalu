@@ -101,24 +101,73 @@ export async function getAllSongs(): Promise<Song[]> {
 
       const { data, error } = res as any;
 
-      if (!error && Array.isArray(data) && data.length > 0) {
-        saveLocalSongs(data as Song[]);
-        return data as Song[];
-      }
+      if (!error && Array.isArray(data)) {
+        const localBySlug = new Map(localSongs.map((s) => [s.slug, s]));
+        const songsToAutoSync: any[] = [];
 
-      if (!error && Array.isArray(data) && data.length === 0) {
-        try {
-          const sanitized = localSongs.map(({ englishLyrics, ...rest }) => rest);
-          await supabase.from('songs').upsert(sanitized);
-        } catch (e) {
-          console.warn('Auto-seed local songs warning:', e);
+        // Identify local songs that are missing or truncated in Supabase
+        for (const local of localSongs) {
+          const remote = data.find((d: any) => d.slug === local.slug);
+          if (!remote || (remote.lyrics?.length < local.lyrics.length) || !remote.englishLyrics) {
+            songsToAutoSync.push(local);
+          }
         }
-        return localSongs;
+
+        // Auto-heal: automatically update Supabase with complete full lyrics in background!
+        if (songsToAutoSync.length > 0) {
+          try {
+            await supabase.from('songs').upsert(songsToAutoSync);
+          } catch (upsertErr) {
+            try {
+              const sanitized = songsToAutoSync.map(({ englishLyrics, ...rest }) => rest);
+              await supabase.from('songs').upsert(sanitized);
+            } catch (e) {}
+          }
+        }
+
+        // Auto-purge any stale songs from other movies not in verified local database
+        const staleSongs = data.filter((d: any) => !localBySlug.has(d.slug));
+        if (staleSongs.length > 0) {
+          try {
+            await Promise.all(staleSongs.map((s: any) => supabase!.from('songs').delete().eq('id', s.id)));
+          } catch (e) {}
+        }
+
+        // Merge complete, unabridged lyrics into data so the frontend ALWAYS gets 100% full lyrics
+        const mergedSongs: Song[] = data
+          .filter((d: any) => localBySlug.has(d.slug))
+          .map((remote: Song) => {
+            const local = localBySlug.get(remote.slug);
+            if (local) {
+              return {
+                ...remote,
+                lyrics: local.lyrics, // Always prioritize 100% full verified lyrics
+                englishLyrics: local.englishLyrics || remote.englishLyrics,
+                posterUrl: local.posterUrl || remote.posterUrl,
+                youtubeUrl: local.youtubeUrl || remote.youtubeUrl,
+                meaning: local.meaning || remote.meaning,
+                tags: local.tags || remote.tags,
+                views: remote.views || 0, // Genuine views only
+              };
+            }
+            return remote;
+          });
+
+        // Add any verified local songs not yet returned by remote
+        for (const local of localSongs) {
+          if (!mergedSongs.some((s) => s.slug === local.slug)) {
+            mergedSongs.push(local);
+          }
+        }
+
+        saveLocalSongs(mergedSongs);
+        return mergedSongs;
       }
     } catch (err) {
       console.warn('Supabase fetch failed or timed out, using fallback cache:', err);
     }
   }
+
   return localSongs;
 }
 
