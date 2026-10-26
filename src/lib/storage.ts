@@ -105,14 +105,16 @@ export async function getAllSongs(): Promise<Song[]> {
         const localBySlug = new Map(localSongs.map((s) => [s.slug, s]));
         const songsToAutoSync: any[] = [];
 
-        // 1. Identify local songs that are missing, outdated, or have incorrect lyrics in Supabase
+        // 1. Identify local songs that are missing, outdated, or have incorrect lyrics/media in Supabase
         for (const local of localSongs) {
           const remote = data.find((d: any) => d.slug === local.slug);
           if (
             !remote ||
             remote.lyrics !== local.lyrics ||
             !remote.englishLyrics ||
-            remote.englishLyrics !== local.englishLyrics
+            remote.englishLyrics !== local.englishLyrics ||
+            remote.youtubeUrl !== local.youtubeUrl ||
+            remote.posterUrl !== local.posterUrl
           ) {
             songsToAutoSync.push({
               ...local,

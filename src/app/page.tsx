@@ -18,8 +18,7 @@ export default async function HomePage() {
     })
     .slice(0, 6);
   const latestSongs = [...songs]
-    .sort((a, b) => new Date(b.updatedAt || b.createdAt).getTime() - new Date(a.updatedAt || a.createdAt).getTime())
-    .slice(0, 8);
+    .sort((a, b) => new Date(b.updatedAt || b.createdAt).getTime() - new Date(a.updatedAt || a.createdAt).getTime());
 
   return (
     <div className="min-h-screen">
@@ -53,7 +52,7 @@ export default async function HomePage() {
           {/* Popular Tag Pills */}
           <div className="flex flex-wrap items-center justify-center gap-2 text-xs text-slate-500 dark:text-slate-400">
             <span className="font-semibold text-slate-700 dark:text-slate-300">Popular:</span>
-            {['Samajavaragamana', 'Devara', 'Sid Sriram', 'RRR', 'Thaman S', 'Anirudh'].map((tag) => (
+            {['Pushpa: The Rise', 'Ala Vaikunthapurramuloo', 'Temper', 'Srivalli', 'Samajavaragamana', 'Sid Sriram', 'Allu Arjun'].map((tag) => (
               <span
                 key={tag}
                 className="px-2.5 py-1 rounded-lg bg-white/70 dark:bg-slate-800/70 border border-slate-200 dark:border-slate-700 font-medium hover:border-amber-500 transition-colors cursor-pointer"
@@ -137,6 +136,9 @@ export default async function HomePage() {
                 <p className="text-xs text-slate-500">Freshly posted tracks with video and meanings</p>
               </div>
             </div>
+            <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-emerald-500/10 text-emerald-600 dark:text-emerald-400 border border-emerald-500/20">
+              {latestSongs.length} Songs Available
+            </span>
           </div>
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
