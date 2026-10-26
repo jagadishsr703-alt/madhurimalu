@@ -101,35 +101,19 @@ export async function getAllSongs(): Promise<Song[]> {
 
       const { data, error } = res as any;
 
-      if (!error && Array.isArray(data)) {
-        // Auto-purge any stale non-Temper songs from Supabase so only Temper remains
-        const nonTemperSongs = data.filter((s: Song) => s.movie?.trim().toLowerCase() !== 'temper');
-        if (nonTemperSongs.length > 0) {
-          try {
-            await Promise.all(
-              nonTemperSongs.map((s: Song) => supabase!.from('songs').delete().eq('id', s.id))
-            );
-          } catch (e) {
-            console.warn('Auto-purge stale songs warning:', e);
-          }
+      if (!error && Array.isArray(data) && data.length > 0) {
+        saveLocalSongs(data as Song[]);
+        return data as Song[];
+      }
+
+      if (!error && Array.isArray(data) && data.length === 0) {
+        try {
+          const sanitized = localSongs.map(({ englishLyrics, ...rest }) => rest);
+          await supabase.from('songs').upsert(sanitized);
+        } catch (e) {
+          console.warn('Auto-seed local songs warning:', e);
         }
-
-        const temperSongs = data.filter((s: Song) => s.movie?.trim().toLowerCase() === 'temper');
-
-        // If Supabase is missing any of the 5 Temper songs, upsert them
-        if (temperSongs.length < localSongs.length) {
-          try {
-            const sanitized = localSongs.map(({ englishLyrics, ...rest }) => rest);
-            await supabase.from('songs').upsert(sanitized);
-          } catch (e) {
-            console.warn('Auto-seed missing Temper songs warning:', e);
-          }
-          saveLocalSongs(localSongs);
-          return localSongs;
-        }
-
-        saveLocalSongs(temperSongs as Song[]);
-        return temperSongs as Song[];
+        return localSongs;
       }
     } catch (err) {
       console.warn('Supabase fetch failed or timed out, using fallback cache:', err);
@@ -285,12 +269,6 @@ export async function syncLocalSongsToSupabase(): Promise<{ count: number; error
 
   try {
     const songs = getLocalSongs();
-    try {
-      await withTimeout(supabase.from('songs').delete().neq('movie', 'Temper'), 6000);
-    } catch (cleanErr) {
-      console.warn('Purge non-Temper songs notice:', cleanErr);
-    }
-
     let res = await withTimeout(supabase.from('songs').upsert(songs), 10000);
     let { error } = res as any;
     if (error && (error.message?.includes('englishLyrics') || error.details?.includes('englishLyrics'))) {
