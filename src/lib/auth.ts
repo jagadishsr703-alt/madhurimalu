@@ -1,6 +1,6 @@
 import { cookies } from 'next/headers';
 
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'madhurimalu@admin';
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'jagadee@3';
 const COOKIE_NAME = 'madhurimalu_admin_auth';
 
 export async function verifyAdminPassword(password: string): Promise<boolean> {

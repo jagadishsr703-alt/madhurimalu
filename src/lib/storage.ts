@@ -7,11 +7,11 @@ import { supabase, isSupabaseConfigured } from './supabase';
 const DATA_FILE = path.join(process.cwd(), 'src', 'data', 'songs_db.json');
 const TMP_DATA_FILE = path.join('/tmp', 'madhurimalu_songs_db.json');
 
-// In-memory cache across serverless invocations
+// Persistent memory cache
 let memoryCache: Song[] | null = null;
 
-// Helper to run promise with timeout (3.5 seconds max)
-async function withTimeout<T>(promise: PromiseLike<T>, ms = 3500): Promise<T> {
+// Helper to run promise with timeout (10 seconds to handle global cross-region cold starts)
+async function withTimeout<T>(promise: PromiseLike<T>, ms = 10000): Promise<T> {
   let timer: NodeJS.Timeout;
   const timeoutPromise = new Promise<never>((_, reject) => {
     timer = setTimeout(() => reject(new Error('Database operation timed out')), ms);
@@ -39,27 +39,29 @@ function getLocalSongs(): Song[] {
     return memoryCache;
   }
 
-  // 1. Try /tmp (serverless modified)
+  // 1. Try /tmp
   try {
     if (fs.existsSync(TMP_DATA_FILE)) {
       const data = fs.readFileSync(TMP_DATA_FILE, 'utf8');
-      memoryCache = JSON.parse(data);
-      return memoryCache!;
+      const parsed = JSON.parse(data);
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        memoryCache = parsed;
+        return memoryCache!;
+      }
     }
-  } catch (err) {
-    // Continue
-  }
+  } catch (err) {}
 
   // 2. Try bundled project file
   try {
     if (fs.existsSync(DATA_FILE)) {
       const data = fs.readFileSync(DATA_FILE, 'utf8');
-      memoryCache = JSON.parse(data);
-      return memoryCache!;
+      const parsed = JSON.parse(data);
+      if (Array.isArray(parsed) && parsed.length > 0) {
+        memoryCache = parsed;
+        return memoryCache!;
+      }
     }
-  } catch (err) {
-    // Continue
-  }
+  } catch (err) {}
 
   // 3. Fallback to initial seed songs
   memoryCache = [...INITIAL_SONGS];
@@ -78,38 +80,39 @@ function saveLocalSongs(songs: Song[]): void {
     }
     fs.writeFileSync(DATA_FILE, JSON.stringify(songs, null, 2), 'utf8');
     return;
-  } catch (err) {
-    // Expected on Vercel read-only filesystem
-  }
+  } catch (err) {}
 
   try {
     fs.writeFileSync(TMP_DATA_FILE, JSON.stringify(songs, null, 2), 'utf8');
-  } catch (err) {
-    console.error('Error writing to /tmp:', err);
-  }
+  } catch (err) {}
 }
 
 export async function getAllSongs(): Promise<Song[]> {
   if (isSupabaseConfigured && supabase) {
     try {
       const res = await withTimeout(
-        supabase.from('songs').select('*').order('createdAt', { ascending: false })
+        supabase
+          .from('songs')
+          .select('*')
+          .order('createdAt', { ascending: false })
       );
 
       const { data, error } = res as any;
 
-      if (!error && data && data.length > 0) {
+      if (!error && Array.isArray(data) && data.length > 0) {
+        // Cache to memory and /tmp so cold starts never lose updates
+        saveLocalSongs(data as Song[]);
         return data as Song[];
       }
 
-      // If Supabase table is connected but empty, auto-seed with local songs!
-      if (!error && data && data.length === 0) {
+      // If Supabase table is empty, auto-seed with local songs!
+      if (!error && Array.isArray(data) && data.length === 0) {
         const local = getLocalSongs();
         await withTimeout(supabase.from('songs').upsert(local));
         return local;
       }
     } catch (err) {
-      console.warn('Supabase fetch failed or timed out, using local:', err);
+      console.warn('Supabase fetch failed or timed out, using fallback cache:', err);
     }
   }
   return getLocalSongs();
@@ -132,6 +135,7 @@ export async function createSong(input: SongInput): Promise<Song> {
     slug: generateSlug(input.title, input.movie),
     views: 0,
     createdAt: new Date().toISOString(),
+    updatedAt: new Date().toISOString(),
   };
 
   if (isSupabaseConfigured && supabase) {
@@ -145,11 +149,9 @@ export async function createSong(input: SongInput): Promise<Song> {
         songs.unshift(data as Song);
         saveLocalSongs(songs);
         return data as Song;
-      } else if (error) {
-        console.error('Supabase create error:', error);
       }
     } catch (err) {
-      console.warn('Supabase create timed out or failed:', err);
+      console.warn('Supabase create error:', err);
     }
   }
 
@@ -163,7 +165,7 @@ export async function createSong(input: SongInput): Promise<Song> {
 }
 
 export async function updateSong(id: string, updates: Partial<SongInput>): Promise<Song | null> {
-  const songs = getLocalSongs();
+  const songs = await getAllSongs();
   const existing = songs.find((s) => s.id === id);
 
   const updatedSong: Song = {
@@ -178,7 +180,6 @@ export async function updateSong(id: string, updates: Partial<SongInput>): Promi
 
   if (isSupabaseConfigured && supabase) {
     try {
-      // Use upsert so if row didn't exist yet, it is created!
       const res = await withTimeout(
         supabase.from('songs').upsert(updatedSong).select().single()
       );
@@ -193,11 +194,9 @@ export async function updateSong(id: string, updates: Partial<SongInput>): Promi
         }
         saveLocalSongs(songs);
         return data as Song;
-      } else if (error) {
-        console.error('Supabase update error:', error);
       }
     } catch (err) {
-      console.warn('Supabase update timed out or failed:', err);
+      console.warn('Supabase update error:', err);
     }
   }
 
@@ -220,7 +219,7 @@ export async function deleteSong(id: string): Promise<boolean> {
     }
   }
 
-  const songs = getLocalSongs();
+  const songs = await getAllSongs();
   const filtered = songs.filter((s) => s.id !== id);
   if (filtered.length === songs.length) return false;
   saveLocalSongs(filtered);
@@ -250,7 +249,7 @@ export async function syncLocalSongsToSupabase(): Promise<{ count: number; error
 
   try {
     const songs = getLocalSongs();
-    const res = await withTimeout(supabase.from('songs').upsert(songs), 6000);
+    const res = await withTimeout(supabase.from('songs').upsert(songs), 10000);
     const { error } = res as any;
     if (error) {
       return { count: 0, error: error.message };

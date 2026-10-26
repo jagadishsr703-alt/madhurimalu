@@ -10,8 +10,16 @@ export default async function HomePage() {
   const songs = await getPublishedSongs();
 
   const featuredSongs = songs.filter((s) => s.featured).slice(0, 4);
-  const trendingSongs = [...songs].sort((a, b) => (b.views || 0) - (a.views || 0)).slice(0, 6);
-  const latestSongs = [...songs].slice(0, 8);
+  const trendingSongs = [...songs]
+    .sort((a, b) => {
+      const diff = (b.views || 0) - (a.views || 0);
+      if (diff !== 0) return diff;
+      return new Date(b.updatedAt || b.createdAt).getTime() - new Date(a.updatedAt || a.createdAt).getTime();
+    })
+    .slice(0, 6);
+  const latestSongs = [...songs]
+    .sort((a, b) => new Date(b.updatedAt || b.createdAt).getTime() - new Date(a.updatedAt || a.createdAt).getTime())
+    .slice(0, 8);
 
   return (
     <div className="min-h-screen">

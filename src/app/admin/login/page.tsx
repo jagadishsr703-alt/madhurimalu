@@ -88,20 +88,11 @@ export default function AdminLoginPage() {
           </button>
         </form>
 
-        {/* Quick Hint Box for initial setup */}
         <div className="mt-8 pt-6 border-t border-slate-100 dark:border-slate-800 text-center">
-          <div className="p-3 rounded-xl bg-amber-50 dark:bg-amber-950/20 border border-amber-200/50 dark:border-amber-800/30 text-xs text-amber-800 dark:text-amber-300">
-            <p className="font-semibold mb-1 flex items-center justify-center gap-1">
-              <Sparkles className="w-3.5 h-3.5" />
-              Default Owner Password:
-            </p>
-            <code className="bg-amber-200/50 dark:bg-amber-900/40 px-2 py-0.5 rounded font-mono text-[13px] font-bold">
-              madhurimalu@admin
-            </code>
-            <p className="text-[10px] text-slate-500 dark:text-slate-400 mt-1.5">
-              (You can change this anytime by setting <code>ADMIN_PASSWORD</code> in your environment settings)
-            </p>
-          </div>
+          <p className="text-xs text-slate-500 flex items-center justify-center gap-1.5">
+            <Shield className="w-3.5 h-3.5 text-emerald-500" />
+            <span>Authorized Owner Access Only</span>
+          </p>
         </div>
       </div>
     </div>
